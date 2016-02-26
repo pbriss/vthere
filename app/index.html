@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- <base href="/"> -->
+	<title>BeThere - Live Concerts</title>
+	<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
+
+	<!--Morris Chart CSS -->
+	<link rel="stylesheet" href="assets/plugins/morris/morris.css">
+	<link href="bower_components/angular-loading-bar/src/loading-bar.css" rel="stylesheet">
+
+	<!-- Css/Less Stylesheets -->
+	<link rel="stylesheet/less" href="modules/shared/styles/main.css">
+</head>
+<body ng-app="app" class="fixed-left">
+	<div ui-view></div>
+
+	<!-- Dev only -->
+	<script src="bower_components/less/dist/less.min.js" data-env="development"></script>
+
+	<!-- Vendors -->
+	<script src="bower_components/jquery/dist/jquery.js"></script> <!-- load before angular -->
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Plugins -->
+	<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="bower_components/angular-loading-bar/src/loading-bar.js"></script>
+
+	<script>
+		var resizefunc = [];
+	</script>
+
+	<!-- jQuery  -->
+	<script src="assets/js/detect.js"></script>
+	<script src="assets/js/fastclick.js"></script>
+	<script src="assets/js/jquery.slimscroll.js"></script>
+	<script src="assets/js/jquery.blockUI.js"></script>
+	<script src="assets/js/waves.js"></script>
+	<script src="assets/js/wow.min.js"></script>
+	<script src="assets/js/jquery.nicescroll.js"></script>
+	<script src="assets/js/jquery.scrollTo.min.js"></script>
+
+	<!-- KNOB JS -->
+	<script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
+
+	<!--Morris Chart-->
+	<script src="assets/plugins/morris/morris.min.js"></script>
+	<script src="assets/plugins/raphael/raphael-min.js"></script>
+
+	<!-- Flot chart -->
+	<script src="assets/plugins/flot-chart/jquery.flot.js"></script>
+	<script src="assets/plugins/flot-chart/jquery.flot.time.js"></script>
+	<script src="assets/plugins/flot-chart/jquery.flot.tooltip.min.js"></script>
+	<script src="assets/plugins/flot-chart/jquery.flot.resize.js"></script>
+	<script src="assets/plugins/flot-chart/jquery.flot.pie.js"></script>
+	<script src="assets/plugins/flot-chart/jquery.flot.selection.js"></script>
+	<script src="assets/plugins/flot-chart/jquery.flot.crosshair.js"></script>
+
+	<script src="assets/plugins/peity/jquery.peity.min.js"></script>
+
+	<script src="assets/js/jquery.core.js"></script>
+	<script src="assets/js/jquery.app.js"></script>
+
+	<!-- Angular App -->
+	<script src="app.js"></script>
+	<script src="modules/shared/app.modules.js"></script>
+	<script src="modules/shared/scripts/app.ctrls.js"></script>
+	<script src="modules/shared/scripts/app.directives.js"></script>
+	<script src="modules/shared/scripts/app.services.js"></script>
+	<script src="modules/shared/scripts/app.filters.js"></script>
+	<script src="modules/login/login.ctrls.js"></script>
+	<script src="modules/login/login.modules.js"></script>
+	<script src="modules/home/home.ctrls.js"></script>
+	<script src="modules/home/home.modules.js"></script>
+</body>
+</html>
