@@ -41,83 +41,53 @@
             },
 			backgroundColor : 'transparent',
 			markers : [{
-				latLng : [41.90, 12.45],
-				name : 'Vatican City'
+				latLng : [37.804259, -122.411362]
 			}, {
-				latLng : [43.73, 7.41],
-				name : 'Monaco'
+				latLng : [41.341850, -103.946107]
 			}, {
-				latLng : [-0.52, 166.93],
-				name : 'Nauru'
+				latLng : [38.276666, -110.179609]
 			}, {
-				latLng : [-8.51, 179.21],
-				name : 'Tuvalu'
+				latLng : [39.940984, -89.175937]
 			}, {
-				latLng : [43.93, 12.46],
-				name : 'San Marino'
+				latLng : [46.203781, -121.301057]
 			}, {
-				latLng : [47.14, 9.52],
-				name : 'Liechtenstein'
+				latLng : [30.696414, -98.776547]
 			}, {
-				latLng : [7.11, 171.06],
-				name : 'Marshall Islands'
+				latLng : [52.336769, -123.239641]
 			}, {
-				latLng : [17.3, -62.73],
-				name : 'Saint Kitts and Nevis'
+				latLng : [-4.695444, -54.641801]
 			}, {
-				latLng : [3.2, 73.22],
-				name : 'Maldives'
+				latLng : [-3.064797, -49.043089]
 			}, {
-				latLng : [35.88, 14.5],
-				name : 'Malta'
+				latLng : [-1.659778, -63.281370]
 			}, {
-				latLng : [12.05, -61.75],
-				name : 'Grenada'
+				latLng : [-28.373014, -51.855589]
 			}, {
-				latLng : [13.16, -61.23],
-				name : 'Saint Vincent and the Grenadines'
+				latLng : [48.755480, 5.097536]
 			}, {
-				latLng : [13.16, -59.55],
-				name : 'Barbados'
+				latLng : [46.505215, 10.722536]
 			}, {
-				latLng : [17.11, -61.85],
-				name : 'Antigua and Barbuda'
+				latLng : [39.984715, -3.691526]
 			}, {
-				latLng : [-4.61, 55.45],
-				name : 'Seychelles'
+				latLng : [37.795914, 127.968630]
 			}, {
-				latLng : [7.35, 134.46],
-				name : 'Palau'
+				latLng : [38.211444, 93.339724]
 			}, {
-				latLng : [42.5, 1.51],
-				name : 'Andorra'
+				latLng : [26.361379, 103.535036]
 			}, {
-				latLng : [14.01, -60.98],
-				name : 'Saint Lucia'
+				latLng : [26.045947, 111.620974]
 			}, {
-				latLng : [6.91, 158.18],
-				name : 'Federated States of Micronesia'
+				latLng : [37.517588, 127.617067]
 			}, {
-				latLng : [1.3, 103.8],
-				name : 'Singapore'
+				latLng : [57.262066, 38.026698]
 			}, {
-				latLng : [1.46, 173.03],
-				name : 'Kiribati'
+				latLng : [39.818707, 40.487571]
 			}, {
-				latLng : [-21.13, -175.2],
-				name : 'Tonga'
+				latLng : [2.532928, -73.519605]
 			}, {
-				latLng : [15.3, -61.38],
-				name : 'Dominica'
+				latLng : [18.541355, 80.240581]
 			}, {
-				latLng : [-20.2, 57.5],
-				name : 'Mauritius'
-			}, {
-				latLng : [26.02, 50.55],
-				name : 'Bahrain'
-			}, {
-				latLng : [0.33, 6.73],
-				name : 'São Tomé and Príncipe'
+				latLng : [29.639882, -82.101690]
 			}]
 		});
 	},

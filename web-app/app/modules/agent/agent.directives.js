@@ -22,6 +22,20 @@
                         $timeout(function() {
                             $('#dollar').removeClass('animated rubberBand');
                         }, 1000);
+
+                        $.Notification.notify('custom', 'right middle', '@alexb', 'This is sooo awesome!');
+                        var $notify = $('.notifyjs-corner');
+                        $notify.insertAfter('#wrapper');
+
+                        $notify.css({position: 'absolute', left: $($('circle')[0]).offset().left, top: $($('circle')[0]).offset().top - 30});
+                        $notify.find('.notifyjs-wrapper').css({display: 'inline-block', width: '100px'});
+
+                        $timeout(function() {
+                            $notify.addClass('animated zoomOutLeft');
+                            $timeout(function() {
+                                $notify.removeClass('animated zoomOutLeft');
+                            }, 2000);
+                        }, 2000);
                     });
                 });
             }

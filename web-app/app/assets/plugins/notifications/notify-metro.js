@@ -19,9 +19,9 @@ $.notify.addStyle("metro", {
             "border": "1px solid #ef5350"
         },
         custom: {
-            "color": "#fafafa !important",
-            "background-color": "#5fbeaa",
-            "border": "1px solid #5fbeaa"
+            "color": "#ffffff !important",
+            "background-color": "#7266ba",
+            "border": "1px solid #7266ba"
         },
         success: {
             "color": "#fafafa !important",

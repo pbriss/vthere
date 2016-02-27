@@ -63,7 +63,7 @@ function($) {
         }else if(style == "success"){
             icon = "fa fa-check";
         }else if(style == "custom"){
-            icon = "md md-album";
+            icon = "fa fa-twitter";
         }else if(style == "info"){
             icon = "fa fa-question";
         }else{
@@ -80,6 +80,7 @@ function($) {
             showAnimation: "show",
             showDuration: 0,
             hideDuration: 0,
+            autoHideDelay: 4000,
             autoHide: true,
             clickToHide: true
         });
