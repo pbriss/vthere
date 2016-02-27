@@ -5,18 +5,17 @@
 
     .controller('AgentController', AgentController);
 
-    AgentController.$inject = ['$timeout'];
-    function AgentController($timeout) {
+    AgentController.$inject = ['$scope', '$timeout'];
+    function AgentController($scope, $timeout) {
+
+        $scope.registered = 1523;
+        $scope.watching = 628;
+        $scope.revenue = 67899;
+        $scope.counters = [];
+
         $timeout(function() {
             $.VectorMap.init();
             $.DashboardCRM.init();
-
-            var registered = new CountUp("registered", 0, 1523);
-            registered.start();
-            var watching = new CountUp("watching", 0, 628);
-            watching.start();
-            var revenue = new CountUp("revenue", 0, 67899);
-            revenue.start();
         });
 
     }

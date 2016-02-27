@@ -1430,12 +1430,12 @@ table.dataTable td.focus {
   background-color: rgba(255, 255, 255, 0.2);
   display: inline-block;
   float: left;
-  font-size: 30px;
-  height: 60px;
-  line-height: 60px;
+  font-size: 20px;
+  height: 40px;
+  line-height: 40px;
   margin-right: 10px;
   text-align: center;
-  width: 60px;
+  width: 40px;
 }
 .mini-stat-info {
   padding-top: 2px;
@@ -1759,6 +1759,14 @@ table.dataTable td.focus {
   text-align: center;
 }
 .bar-widget .iconbox i {
+  line-height: 120px;
+  font-size: 50px;
+}
+.bar-widget .bg-icon {
+  height: 120px;
+  width: 120px;
+}
+.bar-widget .bg-icon i {
   line-height: 120px;
   font-size: 50px;
 }

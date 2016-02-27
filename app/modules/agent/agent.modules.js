@@ -2,7 +2,8 @@
 	'use strict';
 
 	angular.module('agent', [
-		'agent.ctrls'
+		'agent.ctrls',
+		'agent.directives'
 	])
 
 	.config(['$stateProvider', function ($stateProvider) {
