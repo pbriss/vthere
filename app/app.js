@@ -10,8 +10,11 @@
 
 		/* Custom Modules */
 		'shared',
-		'login',
-		'home'
+		'agentlogin',
+		'agent',
+		'clientlogin',
+		'client',
+		'vrplay'
 	])
 
 	// disable spinner in loading-bar

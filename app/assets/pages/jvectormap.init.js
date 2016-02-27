@@ -20,23 +20,23 @@
 			hoverColor : false,
 			regionStyle : {
 				initial : {
-					fill : '#5fbeaa'
+					fill : '#63758c'
 				}
 			},
 			 markerStyle: {
                 initial: {
                     r: 9,
-                    'fill': '#a288d5',
-                    'fill-opacity': 0.9,
+                    'fill': '#ffbd4a',
+                    'fill-opacity': 1.0,
                     'stroke': '#fff',
-                    'stroke-width' : 7,
+                    'stroke-width' : 4,
                     'stroke-opacity': 0.4
                 },
 
                 hover: {
                     'stroke': '#fff',
                     'fill-opacity': 1,
-                    'stroke-width': 1.5
+                    'stroke-width': 1
                 }
             },
 			backgroundColor : 'transparent',
@@ -120,88 +120,6 @@
 				name : 'São Tomé and Príncipe'
 			}]
 		});
-
-		$('#india').vectorMap({
-			map : 'in_mill',
-			backgroundColor : 'transparent',
-			regionStyle : {
-				initial : {
-					fill : '#5d9cec'
-				}
-			}
-		});
-
-		$('#uk').vectorMap({
-			map : 'uk_mill_en',
-			backgroundColor : 'transparent',
-			regionStyle : {
-				initial : {
-					fill : '#81c868'
-				}
-			}
-		});
-
-		$('#usa').vectorMap({
-			map : 'us_aea_en',
-			backgroundColor : 'transparent',
-			regionStyle : {
-				initial : {
-					fill : '#fb6d9d'
-				}
-			}
-		});
-
-		$('#chicago').vectorMap({
-			map : 'us-il-chicago_mill_en',
-			backgroundColor : 'transparent',
-			regionStyle : {
-				initial : {
-					fill : '#34d3eb'
-				}
-			}
-		});
-
-
-		$('#australia').vectorMap({
-			map : 'au_mill',
-			backgroundColor : 'transparent',
-			regionStyle : {
-				initial : {
-					fill : '#ffbd4a'
-				}
-			}
-		});
-		
-		
-		$('#canada').vectorMap({
-			map : 'ca_lcc',
-			backgroundColor : 'transparent',
-			regionStyle : {
-				initial : {
-					fill : '#f05050'
-				}
-			}
-		});
-		
-		$('#germany').vectorMap({
-			map : 'de_mill',
-			backgroundColor : 'transparent',
-			regionStyle : {
-				initial : {
-					fill : '#7266ba'
-				}
-			}
-		});
-		
-		$('#asia').vectorMap({
-			map : 'asia_mill',
-			backgroundColor : 'transparent',
-			regionStyle : {
-				initial : {
-					fill : '#4c5667'
-				}
-			}
-		});
 	},
 	//init
 	$.VectorMap = new VectorMap, $.VectorMap.Constructor =
@@ -211,5 +129,4 @@
 //initializing
 function($) {
 	"use strict";
-	$.VectorMap.init()
 }(window.jQuery);

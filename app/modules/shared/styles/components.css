@@ -1748,9 +1748,9 @@ table.dataTable td.focus {
 /*  Bar widget */
 .bar-widget .iconbox {
   display: inline-block;
-  height: 50px;
-  width: 50px;
-  margin-right: 20px;
+  height: 120px;
+  width: 120px;
+  margin-right: 10px;
   -webkit-border-radius: 50%;
   border-radius: 50%;
   -moz-border-radius: 50%;
@@ -1759,8 +1759,12 @@ table.dataTable td.focus {
   text-align: center;
 }
 .bar-widget .iconbox i {
-  line-height: 50px;
-  font-size: 20px;
+  line-height: 120px;
+  font-size: 50px;
+}
+
+.bar-widget h1 {
+  font-size:50px;
 }
 /* =============
      Form elements

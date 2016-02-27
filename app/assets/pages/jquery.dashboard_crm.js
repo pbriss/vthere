@@ -31,32 +31,6 @@
         });
     },
     
-    //creates Bar chart
-    DashboardCRM.prototype.createBarChart  = function(element, data, xkey, ykeys, labels, lineColors) {
-        Morris.Bar({
-            element: element,
-            data: data,
-            xkey: xkey,
-            ykeys: ykeys,
-            labels: labels,
-            hideHover: 'auto',
-            resize: true, //defaulted to true
-            gridLineColor: '#36404a',
-            barColors: lineColors
-        });
-    },
-    
-    //creates Donut chart
-    DashboardCRM.prototype.createDonutChart = function(element, data, colors) {
-        Morris.Donut({
-            element: element,
-            data: data,
-            resize: true, //defaulted to true
-            colors: colors,
-            labelColor: '#fff'
-        });
-    },
-    
     DashboardCRM.prototype.init = function() {
 
         //create line chart
@@ -72,26 +46,7 @@
             { y: '2015', a: 100, b: 90 }
           ];
         this.createLineChart('morris-line-chart', $data, 'y', ['a', 'b'], ['Deal-Won ', 'Deal-Lost '],['0.1'],['#ffffff'],['#999999'], ['#81c868', '#ffbd4a']);
-        
-        //creating bar chart
-        var $barData  = [
-            { y: '2009', a: 100, b: 90 },
-            { y: '2010', a: 75,  b: 65 },
-            { y: '2011', a: 50,  b: 40 },
-            { y: '2012', a: 75,  b: 65 },
-            { y: '2013', a: 50,  b: 40 },
-            { y: '2014', a: 75,  b: 65 },
-            { y: '2015', a: 100, b: 90}
-        ];
-        this.createBarChart('morris-bar-chart', $barData, 'y', ['a', 'b'], ['Won Deals ', 'Lost Deals '], ['#5fbeaa', '#5d9cec']);
-        
-        //creating donut chart
-        var $donutData = [
-                {label: "Group 1", value: 12},
-                {label: "Group 2", value: 30},
-                {label: "Group 3", value: 20}
-            ];
-        this.createDonutChart('morris-donut-example', $donutData, ['#ebeff2', '#5fbeaa', '#5d9cec']);
+
 
     },
     //init
@@ -101,5 +56,4 @@
 //initializing 
 function($) {
     "use strict";
-    $.DashboardCRM.init();
 }(window.jQuery);

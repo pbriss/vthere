@@ -1,0 +1,20 @@
+;(function() {
+	'use strict';
+
+	angular.module('agent', [
+		'agent.ctrls'
+	])
+
+	.config(['$stateProvider', function ($stateProvider) {
+
+		$stateProvider
+		.state('agent', {
+			parent:'layout',
+			url: '/agent/home',
+			controller: 'AgentController',
+			templateUrl: 'modules/agent/agent.html'
+		})
+	}])
+}());
+
+
