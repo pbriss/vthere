@@ -38,7 +38,7 @@ $(document).ready(function() {
 
             requestAnimationFrame(function loop() {
               var img = new Image;
-              img.onload = function(){
+              img.onload = function() {
                 ctx.drawImage(img,0,0);
               };
               img.src = "http://localhost:9000";
@@ -47,7 +47,7 @@ $(document).ready(function() {
               img2.onload = function(){
                 ctx2.drawImage(img2,0,0);
               };
-              img2.src = "http://localhost:9001";
+              img2.src = "http://localhost:9002";
 
               requestAnimationFrame(loop);
             }.bind(null));

@@ -90,8 +90,8 @@ function init()
     videoImage[i] = document.getElementById('canvas' + (i+1));
     videoImageContext[i] = videoImage[i].getContext('2d');
     // background color if no video present
-    videoImageContext[i].fillStyle = '#000000';
-    videoImageContext[i].fillRect( 0, 0, videoImage[0].width, videoImage[0].height);
+    // videoImageContext[i].fillStyle = '#000000';
+    // videoImageContext[i].fillRect( 0, 0, videoImage[0].width, videoImage[0].height);
 
     videoTexture[i] = new THREE.Texture(videoImage[i]);
     videoTexture[i].minFilter = THREE.LinearFilter;

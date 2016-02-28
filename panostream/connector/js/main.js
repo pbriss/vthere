@@ -42,11 +42,11 @@ $(document).ready(function() {
         img.src = "http://localhost:9000/shot.jpg?rnd="+Date.now();
 
         var img2 = new Image;
-        img2.crossOrigin = "anonymous"; 
+        img2.crossOrigin = "anonymous";
         img2.onload = function(){
           ctx2.drawImage(img2,0,0);
         };
-        img2.src = "http://localhost:9001/shot.jpg?rnd="+Date.now();
+        img2.src = "http://localhost:9002/shot.jpg?rnd="+Date.now();
 
         requestAnimationFrame(loop.bind(null, ctx, ctx2));
       }.bind(null, ctx, ctx2));

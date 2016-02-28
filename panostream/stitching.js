@@ -76,19 +76,19 @@ function calibrate() {
 
   // Plug the <video> vidX into canvasX.
   for(var i=0; i<2; i++) {
-    video[i] = document.getElementById('vid' + (i+1));
+    // video[i] = document.getElementById('vid' + (i+1));
 
     videoImage[i] = document.getElementById('canvas' + (i+1));
     videoImageContext[i] = videoImage[i].getContext('2d');
     // background color if no video present
-    videoImageContext[i].fillStyle = '#000000';
-    videoImageContext[i].fillRect( 0, 0, videoImage[0].width, videoImage[0].height);
+    // videoImageContext[i].fillStyle = '#000000';
+    // videoImageContext[i].fillRect( 0, 0, videoImage[0].width, videoImage[0].height);
   }
 
   for(var i=0; i<2; i++) {
-    if (video[i].readyState === video[i].HAVE_ENOUGH_DATA) {
-      videoImageContext[i].drawImage(
-          video[i], 0, 0, videoImage[0].width, videoImage[0].height);
+    // if (video[i].readyState === video[i].HAVE_ENOUGH_DATA) {
+      // videoImageContext[i].drawImage(
+      //     video[i], 0, 0, videoImage[0].width, videoImage[0].height);
       imageData[i] = videoImageContext[i].getImageData(
           0, 0, videoImage[0].width, videoImage[0].height);
 
@@ -100,7 +100,7 @@ function calibrate() {
                                      'width' : videoImage[0].width,
                                      'height' : videoImage[0].height,
                                      'data' : imageData[i].data.buffer});
-    }
+    // }
   }
   common.naclModule.postMessage('Please calculate the homography.');
 }

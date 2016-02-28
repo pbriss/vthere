@@ -139,7 +139,7 @@ bool Stitching::CalculateHomography() {
     obj.push_back(keypoints_[0][good_matches_[i].queryIdx].pt);
     scene.push_back(keypoints_[1][good_matches_[i].trainIdx].pt);
   }
-
+  msg_handler_->SendMessage("----->" + std::to_string(good_matches_.size()));
   // Find the Homography Matrix, if we have enough points.
   if (good_matches_.size() > 10) {
     homography_ = findHomography(obj, scene, CV_RANSAC);

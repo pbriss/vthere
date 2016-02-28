@@ -296,6 +296,7 @@ var common = (function() {
    *     the data sent from the NaCl module.
    */
   function handleMessage(message_event) {
+    console.log(message_event);
     if (typeof message_event.data === 'string') {
       for (var type in defaultMessageTypes) {
         if (defaultMessageTypes.hasOwnProperty(type)) {
@@ -366,6 +367,7 @@ var common = (function() {
    *     updateStatus.
    */
   function updateStatus(opt_message) {
+    console.log(opt_message);
     if (opt_message) {
       statusText = opt_message;
     }
