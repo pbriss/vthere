@@ -1342,7 +1342,7 @@ body.fixed-left .side-menu.left {
   position: fixed;
 }
 .content-page {
-  margin-left: 240px;
+  margin-left: 10px;
   overflow: hidden;
 }
 .content-page > .content {
