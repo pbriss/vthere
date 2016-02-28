@@ -244,5 +244,29 @@
         <a id="full-screen" class="fa fa-expand icon rfloat" title="Full Screen"></a>
       </div>
     </div>
+
+<div class="container" id="mainform">
+  <div class="video-controls toolbar center">
+      <div class="span-info">
+          <span  id="spanInfo">&nbsp;</span>
+      </div>
+      <button class="btn btn-default" id="btnPlay" >Play</button>
+  </div>
+</div>
+
+
+<!-- emscripten and interface -->
+<script src="connector/js/emscripten/module.js"></script>
+<script src="connector/js/avc/util.js"></script>
+<script src="connector/js/avc/avc.js"></script>
+<script src="connector/js/avc/yuv2rgb.js"></script>
+<script src="connector/js/adpcm.js"></script>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 Jquery 1.10.2, bootstrap 3.0.3-->
+<script src="connector/js/lib/jquery.min.js"></script>
+<script src="connector/js/lib/bootstrap.min.js"></script>
+<script src="connector/js/lib/base64.js"></script>
+<script src="connector/js/media.js"></script>
+<script src="connector/js/player.js"></script>
+<script src="connector/js/main.js"></script>
 </body>
 </html>

@@ -85,7 +85,7 @@ function init()
   // Camera video input. The idea is to plug a camera <video> feed into a canvas
   // and use it to retrieve the data.
   for (var i=0; i < NUM_CAMERAS; i++) {
-    video[i] = document.getElementById('vid' + (i+1));
+    // video[i] = document.getElementById('vid' + (i+1));
 
     videoImage[i] = document.getElementById('canvas' + (i+1));
     videoImageContext[i] = videoImage[i].getContext('2d');
@@ -131,12 +131,12 @@ function render()  {
 
   statprofiler.start("Render time");
   for (var i=0; i < NUM_CAMERAS; i++) {
-    if (video[i].readyState === video[i].HAVE_ENOUGH_DATA) {
-      videoImageContext[i].drawImage( video[i],
-          0, 0, videoImage[i].width, videoImage[i].height);
+    // if (video[i].readyState === video[i].HAVE_ENOUGH_DATA) {
+      // videoImageContext[i].drawImage( video[i],
+      //     0, 0, videoImage[i].width, videoImage[i].height);
       if (videoTexture[i])
         videoTexture[i].needsUpdate = true;  renderer.render(scene, camera);
-    }
+    // }
   }
   statprofiler.stop("Render time");
 

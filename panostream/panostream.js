@@ -8,7 +8,7 @@ var gVideoCounter = 1;
 var gStreams = {};
 
 function requestVideo(opt_video_id) {
-  var devices = getSourcesFromField($('videosrc'));
+  var devices = getSourcesFromField(document.querySelector('#videosrc'));
 
   var videoId = devices.video_id;
   if (opt_video_id) {
@@ -83,7 +83,8 @@ function displayVideoSize_(video_tag) {
 
 function getDevices() {
   // Fill the video dropdown with the available devices.
-  var video_select = $('videosrc');
+  var video_select = document.querySelector('#videosrc');
+  console.log(video_select);
   MediaStreamTrack.getSources(function(devices) {
     for (var i = 0; i < devices.length; i++) {
       var option = document.createElement('option');
