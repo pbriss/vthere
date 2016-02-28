@@ -7,6 +7,10 @@ var server 		   = require('http').Server(app);
 
 var rootFolder = process.env.NODE_ENV == 'production' ? 'dist' : 'app';
 
+
+var offers = [];
+var answers = [];
+
 app.use(express.static(__dirname + '/' + rootFolder));
 
 // log every request to the console
@@ -16,6 +20,31 @@ app.use(bodyParser.json());
 // get an instance of router
 var router = express.Router();
 app.use('/', router);
+app.post('/offer', function(req, res) {
+  offers.push(req.body);
+  console.log(req.body);
+  console.log(JSON.stringify(offers));
+  res.send('Success');
+});
+app.post('/answer', function(req, res) {
+  answers.push(req.body);
+  console.log(JSON.stringify(answers));
+  res.send('Success');
+});
+
+app.get('/offers', function(req, res){
+  res.json(offers);
+});
+
+app.get('/answers', function(req, res) {
+  res.json(answers);
+});
+
+app.get('/clear', function(req, res){ 
+  offers = [];
+  answers = [];
+  res.send('Success');
+});
 
 // expose app
 exports = module.exports = app;

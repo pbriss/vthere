@@ -1,0 +1,270 @@
+<!DOCTYPE HTML PUBLIC -//IETF//DTD HTML//EN">
+<!--
+  Copyright (c) 2013 The WebRTC project authors. All Rights Reserved.
+
+  Use of this source code is governed by a BSD-style license
+  that can be found in the LICENSE file in the root of the source
+  tree. An additional intellectual property rights grant can be found
+  in the file PATENTS.  All contributing project authors may
+  be found in the AUTHORS file in the root of the source tree.
+-->
+<html>
+<head>
+  <title>Multi-device panorama video</title>
+  <link rel="StyleSheet" href="stylesheet.css">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" sizes="196x196" href="elelogo-square.png">
+
+  <!-- Fragment shader program -->
+  <script id="shader-fs" type="x-shader/x-fragment">
+  varying mediump vec3 vDirection;
+  uniform mediump float eye;
+  uniform mediump float projection;
+
+  uniform sampler2D uSampler;
+
+  #define PI 3.1415926535897932384626433832795
+
+  mediump vec4 directionToColor(mediump vec3 direction, mediump float eye, mediump float projection) {
+    /*
+    * Input: a direction.  +x = right, +y = up, +z = backward.
+    *        an eye. left = 0, right = 1.
+    *        a projection. see ProjectionEnum in JS file for enum
+    * Output: a color from the video
+    *
+    * Bug alert: the control flow here may screw up texture filtering.
+    */
+
+    mediump float theta = atan(direction.x, -1.0 * direction.z);
+    mediump float phi = atan(direction.y, length(direction.xz));
+
+    /*
+    * The Nexus 7 and the Moto X (and possibly many others) have
+    * a buggy atan2 implementation that screws up when the numerator
+    * (the first argument) is too close to zero.  (The 1e-4 is carefully
+    * chosen: 1e-5 doesn't fix the problem.
+    */
+    if (abs(direction.x) < 1e-4 * abs(direction.z))
+    theta = 0.5*PI * (1.0 - sign(-1.0 * direction.z));
+    if (abs(direction.y) < 1e-4 * length(direction.xz))
+    phi = 0.0;
+
+    // Uncomment to debug the transformations.
+    // return vec4(theta / (2. * PI) + 0.5, phi / (2. * PI) + 0.5, 0., 0.);
+
+    if (projection == 0.) {
+      // Projection == 0: equirectangular projection
+      return texture2D(uSampler, vec2(mod(theta / (2.0*PI), 1.0), phi / PI + 0.5));
+    } else {
+      // Projection == 1: equirectangular top/bottom 3D projection
+      eye = 1. - eye;
+      return texture2D(uSampler, vec2(mod(theta / (2.0*PI), 1.0), ((phi / PI + 0.5) + eye)/ 2.));
+    }
+  }
+
+  void main(void) {
+    gl_FragColor = directionToColor(vDirection, eye, projection);
+  }
+</script>
+
+<!-- Vertex shader program -->
+<script id="shader-vs" type="x-shader/x-vertex">
+  attribute mediump vec2 aVertexPosition;
+
+  uniform mediump mat4 proj_inv;
+
+  varying mediump vec3 vDirection;
+
+  void main(void) {
+    gl_Position = vec4(aVertexPosition, 1.0, 1.0);
+    mediump vec4 projective_direction = proj_inv * gl_Position;
+    vDirection = projective_direction.xyz / projective_direction.w;
+  }
+</script>
+
+<link rel="stylesheet" href="eleVR-Web-Player/css/font-awesome.css">
+<link rel="stylesheet" href="eleVR-Web-Player/css/elevr-player.css">
+<script src="eleVR-Web-Player/lib/gl-matrix.js" type="text/javascript"></script>
+<script src="eleVR-Web-Player/lib/util.js" type="text/javascript"></script>
+<script src="eleVR-Web-Player/js/controls.js" type="text/javascript"></script>
+<script src="eleVR-Web-Player/js/player-webgl.js" type="text/javascript"></script>
+<script src="eleVR-Web-Player/js/webvr.js" type="text/javascript"></script>
+<script src="eleVR-Web-Player/js/phonevr.js" type="text/javascript"></script>
+<script src="eleVR-Web-Player/js/elevr-player.js" type="text/javascript"></script>
+  <!-- Load the polyfill to switch-hit between Chrome and Firefox. -->
+  <script src="adapter.js"></script>
+
+  <!--
+    Load the code that creates the scene, caneras and maps video feeds to 3D
+    textures. Internally it uses:
+    * The profiler nanolibrary from http://inspirit.github.io/jsfeat for FPS
+    collection etc.
+    * Obviously the three.JS library.
+  -->
+  <script src="libs/profiler.js" type="text/javascript" ></script>
+  <script src="libs/three.js" type="text/javascript" ></script>
+  <script src="libs/TrackballControls.js" type="text/javascript" ></script>
+  <script src="webgl.js" type="text/javascript"></script>
+
+  <!-- This is the NaCl/PNaCl part -->
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="-1">
+  <title>NaClMiguelao</title>
+  <script type="text/javascript" src="common.js"></script>
+  <script type="text/javascript" src="stitching.js"></script>
+
+  <script src="panostream.js"></script>
+  <script type="text/javascript">
+    window.onload = function() {
+      getDevices();
+      startWebGL(function(){
+        runEleVRPlayer();
+      });
+    };
+  </script>
+
+</head>
+<body data-name="nacl_glue"
+      data-tools="glibc pnacl linux"
+      data-configs="Release"
+      data-path="{tc}/..">
+
+<div id="wrapper">
+    <!--
+  Just as in part1, the <embed> element will be wrapped inside the <div>
+  element with the id "listener". In part1, the embed was specified in HTML,
+  here the common.js module creates a new <embed> element and adds it to the
+  <div> for us.
+  -->
+  <div id="listener"></div>
+
+  <!--
+  This element will be populated with the messages that come from the NaCl
+  module. See example.js.
+  -->
+  <div id="log" style="display:none"></div>
+
+  <div>
+    Current webcam: <select id="videosrc"></select>
+    <button id="request-video" onclick="requestVideo();">Request video</button>
+    <button id="reset-video" onclick="resetAllVideo();">Reset all devices
+        </button>
+    <button id="btn_calibrate" onclick="calibrate()" disabled="true">
+    (Please) calibrate.</button>
+  </div>
+  <div>Panorama:</div>
+  <div id="container">
+    <div id="left">
+      <video width="320" height="240" id="vid1" autoplay="autoplay"
+          class="video-area"></video>
+      <div id="vid1-label"></div>
+      <div>
+        Size: <div id="vid1-size" class="inline-contents"></div>
+        <div id="vid1-stream-size" class="inline-contents">(stream size
+            :N/A)</div><br/>
+      </div>
+    </div>
+    <div id="left">
+      <video width="320" height="240" id="vid2" autoplay="autoplay"
+          class="video-area"></video>
+      <div id="vid2-label"></div>
+      <div>
+        Size: <div id="vid2-size" class="inline-contents"></div>
+        <div id="vid2-stream-size" class="inline-contents">(stream size
+            :N/A)</div><br/>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="canvas1" width="1920" height="1080"></canvas>
+  <canvas id="canvas2" width="1920" height="1080"></canvas>
+  <!--<canvas id="canvas3" width="320" height="240"></canvas>-->
+
+  <div id="glcanvascontainer" width="1920" height="1080"></div>
+
+  <br>
+
+</div>
+<div id="video-container">
+  <!-- Loading Message -->
+  <div id="left-load" class="left">
+    <div id="title-l" class="title">Loading Video...</div>
+    <div id="message-l" class="message hidden">Try WASD + Q/E</div>
+  </div>
+  <div id="right-load" class="right">
+    <div id="title-r" class="title">Loading Video...</div>
+    <div id="message-r" class="message hidden">Try WASD + Q/E</div>
+  </div>
+  <div id="left-play" class="left hidden">
+    <a id="play-l" class="large-play fa fa-play fa-5x"></a>
+  </div>
+  <div id="right-play" class="right hidden">
+    <a id="play-r" class="large-play fa fa-play fa-5x"></a>
+  </div>
+
+  <canvas id="glcanvas">
+    Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
+  </canvas>
+
+      <!-- Video Controls -->
+      <div id="video-controls" class="hidden">
+        <a id="play-pause" class="fa fa-play icon" title="Play"></a>
+
+
+        <input type="range" id="seek-bar" value="0">
+
+        <a id="loop" class="fa fa-chain-broken icon" title="Stop Looping"></a>
+
+        <a id="mute" class="fa fa-volume-up icon" title="Mute"></a>
+
+        <a id="recenter" class="fa fa-dot-circle-o icon" title="Recenter"></a>
+
+        <a id="select-local-file" class="fa fa-folder-open icon rfloat" title="Select File"></a>
+
+        <select id="projection-select" class="rfloat">
+          <option value=0>Equirectangular</option>
+          <option value=1>Equirectangular 3D</option>
+        </select>
+
+        <select id="video-select" class="rfloat">
+          <option value="0therelaxatron2.mp4">The Relaxatron (mp4)</option>
+          <option value="0therelaxatron.webm">The Relaxatron (webm)</option>
+          <option value="1Vidcon5.mp4">Vidcon (mp4)</option>
+          <option value="1Vidcon.webm">Vidcon (webm)</option>
+        </select>
+
+        <a id="full-screen" class="fa fa-expand icon rfloat" title="Full Screen"></a>
+      </div>
+    </div>
+
+<div class="container" id="mainform">
+  <div class="video-controls toolbar center">
+      <div class="span-info">
+          <span  id="spanInfo">&nbsp;</span>
+      </div>
+      <button class="btn btn-default" id="btnPlay" >Play</button>
+  </div>
+</div>
+
+
+<!-- emscripten and interface -->
+<script src="connector/js/emscripten/module.js"></script>
+<script src="connector/js/avc/util.js"></script>
+<script src="connector/js/avc/avc.js"></script>
+<script src="connector/js/avc/yuv2rgb.js"></script>
+<script src="connector/js/adpcm.js"></script>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 Jquery 1.10.2, bootstrap 3.0.3-->
+<script src="connector/js/lib/jquery.min.js"></script>
+<script src="connector/js/lib/bootstrap.min.js"></script>
+<script src="connector/js/lib/base64.js"></script>
+<script src="connector/js/media.js"></script>
+<script src="connector/js/player.js"></script>
+<script src="connector/js/main.js"></script>
+</body>
+</html>

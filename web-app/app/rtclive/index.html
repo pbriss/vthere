@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>getUserMedia Example</title>
+  <meta charset="UTF-8"/>
+  <script src="../jquery.js"></script>
+  <script>
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
+}
+
+function loadImg(canvasDOM, url) {
+  var img = new Image();
+  var ctx = canvasDOM.getContext('2d');
+  img.onload = function() {
+    canvasDOM.width = img.naturalWidth;
+    canvasDOM.height = img.naturalHeight;
+    ctx.drawImage(img, 0, 0);
+  };
+  img.src = url;
+}
+    window.addEventListener("load", function() {
+      var anim = window.requestAnimationFrame(function() {
+        loadImg(document.getElementById('cameraoneRaw'), 'http://localhost:9000/shot.jpg?rnd='+guid());
+        loadImg(document.getElementById('cameratwoRaw'), 'http://localhost:9001/shot.jpg?rnd='+guid());
+      });
+    });
+  </script>
+</head>
+<body>
+  <canvas id="cameraoneRaw"></canvas>
+  <canvas id="cameratwoRaw"></canvas>
+</body>
+</html>
