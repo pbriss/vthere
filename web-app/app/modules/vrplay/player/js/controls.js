@@ -46,16 +46,6 @@ var manualRotation = quat.create(),
       fullScreenButton.addEventListener('click', function() {
         controls.fullscreen();
       });
-
-      video.addEventListener('timeupdate', function() {
-        // don't update if paused,
-        // we get last time update after seekBar mousedown pauses
-        if (!video.paused) {
-          // Calculate the slider value
-          var value = (100 / video.duration) * video.currentTime;
-          seekBar.value = value;
-        }
-      });
     },
 
     enableKeyControls: function() {
