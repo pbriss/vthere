@@ -70,12 +70,7 @@ a:active {
   padding: 0 10px;
   opacity: .9;
   height: 30px;
-  background-color: rgb(237,25,88);
-
-  background: -webkit-linear-gradient(left top, rgb(190,25,141), rgb(237,25,88));
-  background: -o-linear-gradient(bottom right, rgb(190,25,141), rgb(237,25,88));
-  background: -moz-linear-gradient(bottom right, rgb(190,25,141), rgb(237,25,88));
-  background: linear-gradient(to bottom right, rgb(190,25,141), rgb(237,25,88));
+  background-color: #7266ba;
 }
 
 #seek-bar {

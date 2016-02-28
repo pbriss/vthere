@@ -26,13 +26,15 @@ var manualRotation = quat.create(),
       playButton.addEventListener('click', function() {
         controls.playPause();
 
-        if (video.paused)
+        if (!video.paused)
           controls.fullscreen();
       });
 
       playL.addEventListener('click', function() {
         controls.playPause();
-        controls.fullscreen();
+
+        if (!video.paused)
+          controls.fullscreen();
       });
     },
 
