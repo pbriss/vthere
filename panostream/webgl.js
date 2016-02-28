@@ -6,7 +6,7 @@
 // Adapted from http://stemkoski.github.io/Three.js/#webcam-texture
 
 // Amount of cameras to render in the 3D world.
-var NUM_CAMERAS = 1;
+var NUM_CAMERAS = 2;
 
 // ThreeJS global variables.
 var container, scene, camera, renderer, controls;

@@ -62,7 +62,6 @@ function TeaMedia(blob, parseDone) {
         }
         console.log("Done bruh");
         this.onParseDone(this);
-
     }.bind(this);
 
     this._constructor = function() {

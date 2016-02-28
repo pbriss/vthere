@@ -46,14 +46,19 @@ function Player (canvas, sampleRate) {
             return;
         }
 
-        if(media.nalBlocks.length > 0) console.log("block number:", media.nalBlocks.length);
+        console.log("block number:", media.nalBlocks.length);
         for (var i = 0; i < media.nalBlocks.length; i++) {
-          this._avc.decode(media.nalBlocks[i].payload, function(firstFrame, timeStamp, buffer, wid, hei) {
+          this._avc.decode(media.nalBlocks[i].payload, function(firstFrame, timeStamp, buffer) {
               var yuv = new Uint8Array(buffer.length);
               yuv.set(buffer, 0, buffer.length);
-              var picture = {'yuv':yuv, 'wid':wid, 'hei':hei, timeStamp: timeStamp};
-              // console.log(">>>>> " +  picture.timeStamp);
-              picture.flag = firstFrame;
+              var picture = {
+                yuv:yuv,
+                // wid:wid,
+                // hei:hei,
+                timeStamp: timeStamp,
+                flag: firstFrame,
+              };
+              // console.log("pushing--->", this._videoBufferList.length);
               this._videoBufferList.push(picture);
           }.bind(this, i === 0, media.nalBlocks[i].timeStamp));
         }
@@ -70,6 +75,7 @@ function Player (canvas, sampleRate) {
 
     this._showPicture = function(picture) {
         yuv2ImageData(picture.yuv, this._rgba);
+        console.log(this._canvasContext.canvas);
         this._canvasContext.putImageData(this._rgba, 0, 0);
     }.bind(this);
 
@@ -100,11 +106,6 @@ function Player (canvas, sampleRate) {
             }
         }
         this._lastTime = (new Date()).getTime();
-    }.bind(this);
-
-    this._pushVideoBuffer = function(picture) {
-        this._videoBufferList.push(picture);
-
     }.bind(this);
 
     // init

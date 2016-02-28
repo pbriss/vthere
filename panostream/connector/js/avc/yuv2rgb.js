@@ -1,3 +1,8 @@
+function clamp(n,low,high){
+    if(n<low){return(low);}
+    if(n>high){return(high);}
+}
+
 var yuv2ImageData = function(yuv, imageData) {
     var width = imageData.width;
     var height = imageData.height;
@@ -13,13 +18,16 @@ var yuv2ImageData = function(yuv, imageData) {
             upos = (w>>1) + (h>>1) * width/2 + uOffset;
             vpos = (w>>1) + (h>>1) * width/2 + vOffset;
 
-            Y = yuv[ypos];
-            U = yuv[upos] - 128;
-            V = yuv[vpos] - 128;
+            y = yuv[ypos];
+            u = yuv[upos] - 128;
+            v = yuv[vpos] - 128;
 
-            R =  (Y + 1.371*V);
-            G =  (Y - 0.698*V - 0.336*U);
-            B =  (Y + 1.732*U);
+            // R=clamp(~~(y+1.4075*v),0,255);
+            // G=clamp(~~(y-0.3455*u-0.7169*v),0,255);
+            // B=clamp(~~(y+1.7790*u),0,255);
+            R =  (y + 1.371*v);
+            G =  (y - 0.698*v - 0.336*u);
+            B =  (y + 1.732*u);
 
             outputData_pos = w*4 + width*h*4;
             outputData[0+outputData_pos] = R;

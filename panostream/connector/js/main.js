@@ -6,7 +6,7 @@ var connect = function(myHost, port, element) {
     mediaSocket.onopen = function() {
       console.log("media socket for", wsURL);
     };
-    mediaSocket.onmessage = function(evt) {
+    mediaSocket.onmessage = function(player, evt) {
       var blob = evt.data;
       if (blob.slice !== undefined) {
         console.log("onmessage", wsURL);
@@ -15,7 +15,8 @@ var connect = function(myHost, port, element) {
           player.playMedia(media);
         });
       }
-    };
+    }.bind(null, player);
+
     mediaSocket.onclose = function() {
       alert("Mobile is disconnected!");
       $("#btnPlay").prop('disabled', true);
@@ -63,7 +64,7 @@ $(document).ready(function() {
             //   });
             // } else {
             connect("localhost", 9000, element);
-            // connect("localhost", 9003, element2);
+            connect("localhost", 9002, element2);
               // connect("192.168.1.112", element);
               // connect("192.168.1.147", element2);
             // }
