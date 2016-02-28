@@ -18,7 +18,7 @@
             7: "modules/vrplay/videos/PortierDean_rock_intimate.mp4",
             8: "modules/vrplay/videos/VictorMilesen_rock_club.mp4",
             9: "modules/vrplay/videos/Volbeat_rock_outdoor.mp4"
-        }
+        };
 
         $scope.video = $scope.videos[$stateParams.id];
 

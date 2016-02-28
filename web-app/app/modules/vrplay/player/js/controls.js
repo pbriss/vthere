@@ -17,7 +17,7 @@ var manualRotation = quat.create(),
       'w' : {index: 0, sign: 1, active: 0},
       's' : {index: 0, sign: -1, active: 0},
       'q' : {index: 2, sign: -1, active: 0},
-      'e' : {index: 2, sign: 1, active: 0},
+      'e' : {index: 2, sign: 1, active: 0}
     },
 
     manualRotateRate: new Float32Array([0, 0, 0]),  // Vector, camera-relative
@@ -25,25 +25,13 @@ var manualRotation = quat.create(),
     create: function() {
       playButton.addEventListener('click', function() {
         controls.playPause();
+
+        if (video.paused)
+          controls.fullscreen();
       });
 
       playL.addEventListener('click', function() {
         controls.playPause();
-      });
-
-      playR.addEventListener('click', function() {
-        controls.playPause();
-      });
-
-      muteButton.addEventListener('click', function() {
-        if (video.muted === false) {
-          controls.mute();
-        } else {
-          controls.unmute();
-        }
-      });
-
-      fullScreenButton.addEventListener('click', function() {
         controls.fullscreen();
       });
     },
@@ -69,6 +57,7 @@ var manualRotation = quat.create(),
           break;
         case 'p':
           controls.playPause();
+          controls.fullscreen();
           break;
         case ' ': //spacebar
           controls.playPause();
@@ -94,10 +83,8 @@ var manualRotation = quat.create(),
      */
     loaded: function() {
       window.leftLoad.classList.add('hidden');
-      window.rightLoad.classList.add('hidden');
       if (video.paused) {
         window.leftPlay.classList.remove('hidden');
-        window.rightPlay.classList.remove('hidden');
       }
     },
 
@@ -109,7 +96,6 @@ var manualRotation = quat.create(),
       video.play();
       if (!video.paused) { // In case somehow hitting play button doesn't work.
         window.leftPlay.classList.add('hidden');
-        window.rightPlay.classList.add('hidden');
 
         window.playButton.className = 'fa fa-pause icon';
         window.playButton.title = 'Pause';
@@ -125,7 +111,6 @@ var manualRotation = quat.create(),
       window.playButton.title = 'Play';
 
       window.leftPlay.classList.remove('hidden');
-      window.rightPlay.classList.remove('hidden');
     },
 
     playPause: function() {
@@ -181,34 +166,10 @@ var manualRotation = quat.create(),
       window.muteButton.title = 'Mute';
     },
 
-    selectLocalVideo: function() {
-      var input = document.createElement('input');
-      input.type = 'file';
-      input.accept = 'video/*';
-
-      input.addEventListener('change', function () {
-        var files = input.files;
-        if (!files.length) {
-          // The user didn't select anything.  Sad.
-          console.log('File selection canceled');
-          return;
-        }
-
-        videoObjectURL = URL.createObjectURL(files[0]);
-        console.log('Loading local file ', files[0].name, ' at URL ', videoObjectURL);
-        videoSelect.value = '';
-        controls.loadVideo(videoObjectURL);
-      });
-
-      input.click();
-    },
-
     loadVideo: function(videoFile) {
       controls.pause();
       window.leftPlay.classList.add('hidden');
-      window.rightPlay.classList.add('hidden');
       window.leftLoad.classList.remove('hidden');
-      window.rightLoad.classList.remove('hidden');
 
       webGL.gl.clear(webGL.gl.COLOR_BUFFER_BIT);
 
@@ -256,14 +217,10 @@ var manualRotation = quat.create(),
 
     hide: function() {
       window.videoControls.classList.add('hidden');
-      window.messageL.classList.add('hidden');
-      window.messageR.classList.add('hidden');
     },
 
     show: function() {
       window.videoControls.classList.remove('hidden');
-      window.messageL.classList.remove('hidden');
-      window.messageR.classList.remove('hidden');
     }
   };
 

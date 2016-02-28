@@ -48,36 +48,22 @@ function setupControls() {
 
   window.videoControls = document.getElementById('video-controls');
   window.messageL = document.getElementById('message-l');
-  window.messageR = document.getElementById('message-r');
 
   resizeContainer();
 
   window.leftLoad = document.getElementById('left-load');
-  window.rightLoad = document.getElementById('right-load');
   window.leftPlay = document.getElementById('left-play');
-  window.rightPlay = document.getElementById('right-play');
   window.canvas = document.getElementById('glcanvas');
   window.video = document.getElementById('video');
 
   // Buttons
   window.playButton = document.getElementById('play-pause');
   window.playL = document.getElementById('play-l');
-  window.playR = document.getElementById('play-r');
-  window.muteButton = document.getElementById('mute');
-  window.loopButton = document.getElementById('loop');
-  window.fullScreenButton = document.getElementById('full-screen');
-
-  // Sliders
-  window.seekBar = document.getElementById('seek-bar');
 
   // Selectors
   window.projectionSelect = 0;
 
   document.getElementById('title-l').style.fontSize = window.outerHeight / 20 + 'px';
-  document.getElementById('title-r').style.fontSize = window.outerHeight / 20 + 'px';
-
-  window.messageL.style.fontSize = window.outerHeight / 30 + 'px';
-  window.messageR.style.fontSize = window.outerHeight / 30 + 'px';
 
   controls.create();
 
