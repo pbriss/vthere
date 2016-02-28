@@ -11,6 +11,7 @@ var connect = function(myHost, port, element) {
       if (blob.slice !== undefined) {
         console.log("onmessage", wsURL);
         new TeaMedia(blob, function(media) {
+          console.log("playinbg", wsURL);
           player.playMedia(media);
         });
       }
@@ -62,7 +63,7 @@ $(document).ready(function() {
             //   });
             // } else {
             connect("localhost", 9000, element);
-            connect("localhost", 9001, element2);
+            // connect("localhost", 9003, element);
               // connect("192.168.1.112", element);
               // connect("192.168.1.147", element2);
             // }

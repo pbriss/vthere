@@ -60,7 +60,7 @@ function TeaMedia(blob, parseDone) {
                 break;
             }
         }
-
+        console.log("Done bruh");
         this.onParseDone(this);
 
     }.bind(this);
@@ -68,14 +68,15 @@ function TeaMedia(blob, parseDone) {
     this._constructor = function() {
         this.pcmBlocks = [];
         this.nalBlocks = [];
-
+        console.log("constructor");
         var fileReader = new FileReader();
         var that = this;
         fileReader.onload = function() {
+          console.log("onload");
             that._decodeBuffer( this.result);
         };
         fileReader.readAsArrayBuffer(blob);
-
+        console.log("End of constructor");
     }.bind(this);
 
     // init

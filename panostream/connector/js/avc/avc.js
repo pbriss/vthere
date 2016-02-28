@@ -1,4 +1,4 @@
-/** 
+/**
  * Requires: avc-codec.js
  **/
 
@@ -15,12 +15,12 @@ var _broadwayOnPictureDecoded;
 
 var Avc = (function avc() {
   const MAX_STREAM_BUFFER_LENGTH = 1024 * 1024;
-  
+
   function constructor() {
     Module._broadwayInit();
     this.streamBuffer = toU8Array(Module._broadwayCreateStream(MAX_STREAM_BUFFER_LENGTH), MAX_STREAM_BUFFER_LENGTH);
     this.pictureBuffers = {};
-    
+
     this.onPictureDecoded = function (buffer, width, height) {
       // console.info(buffer.length);
     }
@@ -28,24 +28,40 @@ var Avc = (function avc() {
     _broadwayOnHeadersDecoded = function () {
 
     };
+    if (_broadwayOnPictureDecoded != null) {
+      console.log("not gonna replace bitch");
+      var saved_broadwayOnPictureDecoded = _broadwayOnPictureDecoded;
+      _broadwayOnPictureDecoded = function ($buffer, width, height) {
+        console.log("calling old");
+        saved_broadwayOnPictureDecoded(buffer, width, height);
 
-    _broadwayOnPictureDecoded = function ($buffer, width, height) {
-      var buffer = this.pictureBuffers[$buffer];
-      if (!buffer) {
-        buffer = this.pictureBuffers[$buffer] = toU8Array($buffer, (width * height * 3) / 2);
-      }
-      this.onPictureDecoded(buffer, width, height);
-    }.bind(this);
-
+        _broadwayOnPictureDecoded = function($buffer, width, height) {
+          console.log("Calling new");
+          var buffer = this.pictureBuffers[$buffer];
+          if (!buffer) {
+            buffer = this.pictureBuffers[$buffer] = toU8Array($buffer, (width * height * 3) / 2);
+          }
+          this.onPictureDecoded(buffer, width, height);
+        }.bind(this);
+      }.bind(this);
+    } else {
+      _broadwayOnPictureDecoded = function ($buffer, width, height) {
+        var buffer = this.pictureBuffers[$buffer];
+        if (!buffer) {
+          buffer = this.pictureBuffers[$buffer] = toU8Array($buffer, (width * height * 3) / 2);
+        }
+        this.onPictureDecoded(buffer, width, height);
+      }.bind(this);
+    }
   }
 
   /**
-   * Creates a typed array from a HEAP8 pointer. 
+   * Creates a typed array from a HEAP8 pointer.
    */
   function toU8Array(ptr, length) {
     return HEAPU8.subarray(ptr, ptr + length);
   }
-  
+
   constructor.prototype = {
     /**
      * Decodes a stream buffer. This may be one single (unframed) NAL unit without the
@@ -63,11 +79,11 @@ var Avc = (function avc() {
       console.info("Broadway Configured: " + JSON.stringify(config));
     }
   };
-  
+
   return constructor;
 })();
 
-function patchOptimizations(config, patches) { 
+function patchOptimizations(config, patches) {
   var scope = getGlobalScope();
   for (var name in patches) {
     var patch = patches[name];
@@ -139,7 +155,7 @@ function clip(x, y, z) {
 
 function OptimizedGetBoundaryStrengthsA($mb, $bS) {
   var $totalCoeff = $mb + 28;
-  
+
   var tc0 = HEAP16[$totalCoeff + 0 >> 1];
   var tc1 = HEAP16[$totalCoeff + 2 >> 1];
   var tc2 = HEAP16[$totalCoeff + 4 >> 1];
@@ -156,7 +172,7 @@ function OptimizedGetBoundaryStrengthsA($mb, $bS) {
   var tc13 = HEAP16[$totalCoeff + 26 >> 1];
   var tc14 = HEAP16[$totalCoeff + 28 >> 1];
   var tc15 = HEAP16[$totalCoeff + 30 >> 1];
-  
+
   HEAP32[$bS + 32 >> 2] = tc2 || tc0 ? 2 : 0;
   HEAP32[$bS + 40 >> 2] = tc3 || tc1 ? 2 : 0;
   HEAP32[$bS + 48 >> 2] = tc6 || tc4 ? 2 : 0;
@@ -192,7 +208,7 @@ function OptimizedFilterVerLumaEdge ($data, bS, $thresholds, imageWidth) {
   var alpha = HEAP32[$thresholds + 4 >> 2];
   var beta = HEAP32[$thresholds + 8 >> 2];
   var val;
-  
+
   if (bS < 4) {
     tmp = tc = HEAPU8[HEAP32[$thresholds >> 2] + (bS - 1)] & 255;
     for (var i = 4; i > 0; i--) {
@@ -207,23 +223,23 @@ function OptimizedFilterVerLumaEdge ($data, bS, $thresholds, imageWidth) {
           HEAP8[$data - 2] = p1 + clip(-tc, tc, val);
           tmp++;
         }
-        
+
         q2 = HEAPU8[$data + 2] & 255;
         if (Math.abs(q2 - q0) < beta) {
           val = (q2 + ((p0 + q0 + 1) >> 1) - (q1 << 1)) >> 1;
           HEAP8[$data + 1] = (q1 + clip(-tc, tc, val));
           tmp++;
         }
-        
+
         val = ((((q0 - p0) << 2) + (p1 - q1) + 4) >> 3);
         delta = clip(-tmp, tmp, val);
-        
+
         p0 = HEAPU8[$clp + (p0 + delta)] & 255;
         q0 = HEAPU8[$clp + (q0 - delta)] & 255;
         tmp = tc;
         HEAP8[$data - 1] = p0;
         HEAP8[$data] = q0;
-        
+
         $data += imageWidth;
       }
     }
@@ -243,7 +259,7 @@ function OptimizedFilterHorLuma ($data, bS, $thresholds, imageWidth) {
   var alpha = HEAP32[$thresholds + 4 >> 2];
   var beta = HEAP32[$thresholds + 8 >> 2];
   var val;
-  
+
   if (bS < 4) {
     tmp = tc = HEAPU8[HEAP32[$thresholds >> 2] + (bS - 1)] & 255;
     for (var i = 16; i > 0; i--) {
@@ -251,7 +267,7 @@ function OptimizedFilterHorLuma ($data, bS, $thresholds, imageWidth) {
       p0 = HEAPU8[$data + -imageWidth] & 255;
       q0 = HEAPU8[$data] & 255;
       q1 = HEAPU8[$data + imageWidth] & 255;
-      
+
       if ((Math.abs(p0 - q0) < alpha) && (Math.abs(p1 - p0) < beta) && (Math.abs(q1 - q0) < beta)) {
         p2 = HEAPU8[$data + (-imageWidth * 3)] & 255;
         if (Math.abs(p2 - p0) < beta) {
@@ -259,23 +275,23 @@ function OptimizedFilterHorLuma ($data, bS, $thresholds, imageWidth) {
           HEAP8[$data + (-imageWidth << 1)] = p1 + clip(-tc, tc, val);
           tmp++;
         }
-        
+
         q2 = HEAPU8[$data + (imageWidth << 2)] & 255;
         if (Math.abs(q2 - q0) < beta) {
             val = (q2 + ((p0 + q0 + 1) >> 1) - (q1 << 1)) >> 1;
             HEAP8[$data + imageWidth] = (q1 + clip(-tc, tc, val));
             tmp++;
         }
-        
+
         val = ((((q0 - p0) << 2) + (p1 - q1) + 4) >> 3);
         delta = clip(-tmp, tmp, val);
-        
+
         p0 = HEAPU8[$clp + (p0 + delta)] & 255;
         q0 = HEAPU8[$clp + (q0 - delta)] & 255;
         tmp = tc;
         HEAP8[$data - imageWidth] = p0;
         HEAP8[$data] = q0;
-        
+
         $data ++;
       }
     }

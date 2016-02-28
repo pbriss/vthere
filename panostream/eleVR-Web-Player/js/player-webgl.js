@@ -61,6 +61,7 @@ var vrHMD, vrSensor;
       webGL.gl.bindTexture(webGL.gl.TEXTURE_2D, null);
       timing.textureTime = undefined;
       magicVariableDoNotUsed = container.firstChild;
+      // magicVariableDoNotUsed = document.getElementById("canvas1");;
     },
 
     updateTexture: function() {

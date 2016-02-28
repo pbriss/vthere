@@ -6,7 +6,7 @@
 // Adapted from http://stemkoski.github.io/Three.js/#webcam-texture
 
 // Amount of cameras to render in the 3D world.
-var NUM_CAMERAS = 2;
+var NUM_CAMERAS = 1;
 
 // ThreeJS global variables.
 var container, scene, camera, renderer, controls;
@@ -104,7 +104,7 @@ function init()
         new THREE.PlaneGeometry(videoImage[0].width, videoImage[0].height, 1, 1);
     movieScreen[i] = new THREE.Mesh(movieGeometry, movieMaterial);
 
-    movieScreen[i].position.set(0, 0, -100);
+    movieScreen[i].position.set(0, 0, -5000);
     movieScreen[i].rotation.set(0, 0, 0); // (Math.PI /8)*(1-i)
     scene.add(movieScreen[i]);
   }
