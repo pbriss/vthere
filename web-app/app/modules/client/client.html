@@ -19,134 +19,54 @@
                         <a href="javascript:void(0);" data-filter="*" class="current">
                             <span class="mini-stat-icon bg-warning text-white">All</span>
                         </a>
-                        <a href="javascript:void(0);" data-filter=".webdesign">
+                        <a href="javascript:void(0);" data-filter=".intimate">
                             <span class="mini-stat-icon bg-warning"><i class="ion-ios7-cart text-white"></i></span>
                         </a>
-                        <a href="javascript:void(0);" data-filter=".graphicdesign">
+                        <a href="javascript:void(0);" data-filter=".club">
                             <span class="mini-stat-icon bg-warning"><i class="ion-ios7-cart text-white"></i></span>
                         </a>
-                        <a href="javascript:void(0);" data-filter=".illustrator">
+                        <a href="javascript:void(0);" data-filter=".indoor">
                             <span class="mini-stat-icon bg-warning"><i class="ion-ios7-cart text-white"></i></span>
                         </a>
-                        <a href="javascript:void(0);" data-filter=".photography">
+                        <a href="javascript:void(0);" data-filter=".outdoor">
                             <span class="mini-stat-icon bg-warning"><i class="ion-ios7-cart text-white"></i></span>
                         </a>
                     </div>
                 </div>
             </div>
-
             <div class="row port">
                 <div class="portfolioContainer">
-                    <div class="col-sm-6 col-lg-3 col-md-4 webdesign illustrator">
-                        <div class="gal-detail thumb">
-                            <a ui-sref="vrplay({id:1})" class="image-popup" title="Screenshot-1">
-                                <img src="assets/images/gallery/1.jpg" class="thumb-img" alt="work-thumbnail">
-                            </a>
-                            <h4>Gallary Image</h4>
+                    <div ng-repeat="concert in concerts" class="col-sm-6 col-lg-3 col-md-4 {{concert.type}}" concertbox id="{{concert.id}}">
+                        <a href="javascript:void(0);">
+                            <div class="gal-detail thumb">
+                                <div class="image-popup" title="Screenshot-1">
+                                    <img ng-src="assets/images/gallery/{{concert.id}}.jpg" class="thumb-img" alt="work-thumbnail">
+                                </div>
+                                <h4>Gallary Image</h4>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div id="concertbox-login" style="display:none;">
+                    <div class="row">
+                        <!-- Pricing Item -->
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="price_card text-center">
+                                <div class="pricing-header bg-purple">
+                                    <span class="price">$39</span>
+                                    <span class="name">Enterprise Pack</span>
+                                </div>
+                                <ul class="price-features">
+                                    <li>Unlimited Projects</li>
+                                    <li>10 GB Storage</li>
+                                    <li>10 Domain</li>
+                                    <li>100 User</li>
+                                    <li>24x7 Support</li>
+                                </ul>
+                                <button class="btn btn-purple w-md waves-effect waves-light">Sign Up</button>
+                            </div> <!-- end Pricing_card -->
                         </div>
                     </div>
-
-                    <div class="col-sm-6 col-lg-3 col-md-4 graphicdesign illustrator photography">
-                        <div class="gal-detail thumb">
-                            <a ui-sref="vrplay({id:2})" class="image-popup" title="Screenshot-2">
-                                <img src="assets/images/gallery/2.jpg" class="thumb-img" alt="work-thumbnail">
-                            </a>
-                            <h4>Gallary Image</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3 col-md-4 webdesign graphicdesign">
-                        <div class="gal-detail thumb">
-                            <a ui-sref="vrplay({id:3})" class="image-popup" title="Screenshot-3">
-                                <img src="assets/images/gallery/3.jpg" class="thumb-img" alt="work-thumbnail">
-                            </a>
-                            <h4>Gallary Image</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3 col-md-4 illustrator photography">
-                        <div class="gal-detail thumb">
-                            <a ui-sref="vrplay({id:4})" class="image-popup" title="Screenshot-4">
-                                <img src="assets/images/gallery/4.jpg" class="thumb-img" alt="work-thumbnail">
-                            </a>
-                            <h4>Gallary Image</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3 col-md-4 graphicdesign photography">
-                        <div class="gal-detail thumb">
-                            <a ui-sref="vrplay({id:5})" class="image-popup" title="Screenshot-5">
-                                <img src="assets/images/gallery/5.jpg" class="thumb-img" alt="work-thumbnail">
-                            </a>
-                            <h4>Gallary Image</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3 col-md-4 webdesign photography">
-                        <div class="gal-detail thumb">
-                            <a ui-sref="vrplay({id:6})" class="image-popup" title="Screenshot-6">
-                                <img src="assets/images/gallery/6.jpg" class="thumb-img" alt="work-thumbnail">
-                            </a>
-                            <h4>Gallary Image</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3 col-md-4 illustrator photography graphicdesign">
-                        <div class="gal-detail thumb">
-                            <a ui-sref="vrplay({id:7})" class="image-popup" title="Screenshot-7">
-                                <img src="assets/images/gallery/7.jpg" class="thumb-img" alt="work-thumbnail">
-                            </a>
-                            <h4>Gallary Image</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3 col-md-4 graphicdesign photography webdesign">
-                        <div class="gal-detail thumb">
-                            <a ui-sref="vrplay({id:8})" class="image-popup" title="Screenshot-8">
-                                <img src="assets/images/gallery/8.jpg" class="thumb-img" alt="work-thumbnail">
-                            </a>
-                            <h4>Gallary Image</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3 col-md-4 webdesign illustrator">
-                        <div class="gal-detail thumb">
-                            <a ui-sref="vrplay({id:9})" class="image-popup" title="Screenshot-9">
-                                <img src="assets/images/gallery/9.jpg" class="thumb-img" alt="work-thumbnail">
-                            </a>
-                            <h4>Gallary Image</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3 col-md-4 photography graphicdesign">
-                        <div class="gal-detail thumb">
-                            <a ui-sref="vrplay({id:10})" class="image-popup" title="Screenshot-10">
-                                <img src="assets/images/gallery/10.jpg" class="thumb-img" alt="work-thumbnail">
-                            </a>
-                            <h4>Gallary Image</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3 col-md-4 graphicdesign photography">
-                        <div class="gal-detail thumb">
-                            <a ui-sref="vrplay({id:11})" class="image-popup" title="Screenshot-11">
-                                <img src="assets/images/gallery/11.jpg" class="thumb-img" alt="work-thumbnail">
-                            </a>
-                            <h4>Gallary Image</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3 col-md-4 webdesign graphicdesign illustrator">
-                        <div class="gal-detail thumb">
-                            <a ui-sref="vrplay({id:12})" class="image-popup" title="Screenshot-12">
-                                <img src="assets/images/gallery/12.jpg" class="thumb-img" alt="work-thumbnail">
-                            </a>
-                            <h4>Gallary Image</h4>
-                        </div>
-                    </div>
-
-
-
                 </div>
             </div> <!-- End row -->
 

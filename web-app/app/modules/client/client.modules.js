@@ -2,7 +2,8 @@
 	'use strict';
 
 	angular.module('client', [
-		'client.ctrls'
+		'client.ctrls',
+		'client.directives'
 	])
 
 	.config(['$stateProvider', function ($stateProvider) {
