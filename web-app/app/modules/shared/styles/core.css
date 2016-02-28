@@ -131,8 +131,7 @@ hr {
 }
 /* Page titles */
 .page-title {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 30px;
   margin-bottom: 0px;
   margin-top: 7px;
 }
@@ -575,7 +574,7 @@ blockquote small {
   color: #f05050;
 }
 .text-muted {
-  color: #98a6ad;
+  color: #aebcc3;
 }
 .text-primary {
   color: #5d9cec;
@@ -988,7 +987,7 @@ button.list-group-item .list-group-item-heading {
 }
 /* Dropcap */
 .dropcap {
-  font-size: 3.1em;
+  font-size: 1.8em;
 }
 .dropcap,
 .dropcap-circle,

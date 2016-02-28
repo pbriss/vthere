@@ -7,68 +7,95 @@
             <!-- Page-Title -->
             <div class="row">
                 <div class="col-sm-12">
-                    <h4 class="page-title m-b-20">Trending Concerts</h4>
+                    <h4 class="page-title m-b-10"><i class="ion-flame text-danger m-r-10"></i>Trending Concerts</h4>
                 </div>
             </div>
 
             <!-- SECTION FILTER
             ================================================== -->
+            <!--<div class="row">-->
+                <!--<div class="col-lg-12 col-md-12 col-sm-12 ">-->
+                    <!--<div class="portfolioFilter">-->
+                        <!--<a href="javascript:void(0);" data-filter="*" class="current">-->
+                            <!--<span class="mini-stat-icon bg-warning text-white">All</span>-->
+                        <!--</a>-->
+                        <!--<a href="javascript:void(0);" data-filter=".intimate">-->
+                            <!--<span class="mini-stat-icon bg-warning"><i class="ion-ios7-cart text-white"></i></span>-->
+                        <!--</a>-->
+                        <!--<a href="javascript:void(0);" data-filter=".club">-->
+                            <!--<span class="mini-stat-icon bg-warning"><i class="ion-ios7-cart text-white"></i></span>-->
+                        <!--</a>-->
+                        <!--<a href="javascript:void(0);" data-filter=".indoor">-->
+                            <!--<span class="mini-stat-icon bg-warning"><i class="ion-ios7-cart text-white"></i></span>-->
+                        <!--</a>-->
+                        <!--<a href="javascript:void(0);" data-filter=".outdoor">-->
+                            <!--<span class="mini-stat-icon bg-warning"><i class="ion-ios7-cart text-white"></i></span>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 ">
-                    <div class="portfolioFilter">
-                        <a href="javascript:void(0);" data-filter="*" class="current">
-                            <span class="mini-stat-icon bg-warning text-white">All</span>
-                        </a>
-                        <a href="javascript:void(0);" data-filter=".intimate">
-                            <span class="mini-stat-icon bg-warning"><i class="ion-ios7-cart text-white"></i></span>
-                        </a>
-                        <a href="javascript:void(0);" data-filter=".club">
-                            <span class="mini-stat-icon bg-warning"><i class="ion-ios7-cart text-white"></i></span>
-                        </a>
-                        <a href="javascript:void(0);" data-filter=".indoor">
-                            <span class="mini-stat-icon bg-warning"><i class="ion-ios7-cart text-white"></i></span>
-                        </a>
-                        <a href="javascript:void(0);" data-filter=".outdoor">
-                            <span class="mini-stat-icon bg-warning"><i class="ion-ios7-cart text-white"></i></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="row port">
                 <div class="portfolioContainer">
-                    <div ng-repeat="concert in concerts" class="col-sm-6 col-lg-3 col-md-4 {{concert.type}}" concertbox id="{{concert.id}}">
-                        <a href="javascript:void(0);">
-                            <div class="gal-detail thumb">
-                                <div class="image-popup" title="Screenshot-1">
-                                    <img ng-src="assets/images/gallery/{{concert.id}}.jpg" class="thumb-img" alt="work-thumbnail">
-                                </div>
-                                <h4>Gallary Image</h4>
+                    <div ng-repeat="concert in concerts" class="concert-box {{concert.venue}}" concertbox id="{{concert.id}}">
+                        <div class="gal-detail thumb">
+                            <div class="image-popup" title="Screenshot-1">
+                                <img ng-src="images/artists/{{concert.id}}.png" class="thumb-img" alt="work-thumbnail">
                             </div>
-                        </a>
-                    </div>
-                </div>
-                <div id="concertbox-login" style="display:none;">
-                    <div class="row">
-                        <!-- Pricing Item -->
-                        <div class="col-sm-12 col-md-12 col-lg-12">
-                            <div class="price_card text-center">
-                                <div class="pricing-header bg-purple">
-                                    <span class="price">$39</span>
-                                    <span class="name">Enterprise Pack</span>
-                                </div>
-                                <ul class="price-features">
-                                    <li>Unlimited Projects</li>
-                                    <li>10 GB Storage</li>
-                                    <li>10 Domain</li>
-                                    <li>100 User</li>
-                                    <li>24x7 Support</li>
-                                </ul>
-                                <button class="btn btn-purple w-md waves-effect waves-light">Sign Up</button>
-                            </div> <!-- end Pricing_card -->
+                            <h4>{{concert.name}}</h4>
+                            <h5 class="text-muted">{{concert.type}}</h5>
+                            <div class="venue-label label label-purple">{{concert.venue | capitalize}}</div>
+                            <h5 class="text-muted"><i class="fa fa-map-marker m-r-5"></i>{{concert.location}}</h5>
+                            <span class="live-display" ng-if="concert.isLive">
+                                <span class="live-marker bg-danger animated infinite pulse"></span>LIVE
+                            </span>
+                            <div class="live-display" ng-if="!concert.isLive">
+                                22:00
+                            </div>
                         </div>
                     </div>
                 </div>
             </div> <!-- End row -->
+            <div id="concertbox-login" style="display:none;">
+                <div class="row">
+                    <!-- Pricing Item -->
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="price_card text-center">
+                            <div class="pricing-header bg-purple">
+                                <div class="bg-picture text-center">
+                                    <div class="bg-picture-overlay"></div>
+                                    <div class="profile-info-name">
+                                        <img ng-src="images/artists/{{currentConcert.id}}.png" class="thumb-lg img-circle img-thumbnail" alt="profile-image">
+                                        <h4 class="m-b-5"><b>{{currentConcert.name}}</b></h4>
+                                        <p class="text-muted"><i class="fa fa-map-marker m-r-5"></i>{{currentConcert.location}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricing-num m-t-30 m-b-10">
+                                <sup>$</sup>5
+                            </div>
+                            <ul class="price-features">
+                                <li><b>Venue</b>{{currentConcert.venue | capitalize}}</li>
+                                <li><b>Genre</b>{{currentConcert.type}}</li>
+                                <li>
+                                    <div class="live-display static" ng-if="currentConcert.isLive">
+                                        <div class="live-marker bg-danger animated infinite pulse"></div>LIVE
+                                    </div>
+                                    <div class="live-display static" ng-if="!currentConcert.isLive">
+                                        22:00
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="live-display static" ng-if="currentConcert.isLive">
+                                <button class="btn btn-purple w-md waves-effect waves-light"><i class="fa fa-play m-r-5"></i>Watch Now</button>
+                            </div>
+                            <div class="live-display static" ng-if="!currentConcert.isLive">
+                                <button class="btn btn-purple w-md waves-effect waves-light"><i class="fa fa-calendar m-r-5"></i>Add to Calendar</button>
+                            </div>
+                        </div> <!-- end Pricing_card -->
+                    </div>
+                </div>
+            </div>
 
         </div> <!-- container -->
 

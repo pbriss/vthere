@@ -2200,7 +2200,7 @@ body {
     -webkit-transform: scale(1);
   }
   50% {
-    -webkit-transform: scale(1.1);
+    -webkit-transform: scale(3.8);
   }
   100% {
     -webkit-transform: scale(1);
@@ -2211,7 +2211,7 @@ body {
     -moz-transform: scale(1);
   }
   50% {
-    -moz-transform: scale(1.1);
+    -moz-transform: scale(3.8);
   }
   100% {
     -moz-transform: scale(1);
@@ -2222,7 +2222,7 @@ body {
     -o-transform: scale(1);
   }
   50% {
-    -o-transform: scale(1.1);
+    -o-transform: scale(3.8);
   }
   100% {
     -o-transform: scale(1);
@@ -2233,7 +2233,7 @@ body {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(3.8);
   }
   100% {
     transform: scale(1);

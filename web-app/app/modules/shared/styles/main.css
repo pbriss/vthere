@@ -4,3 +4,56 @@
 @import "icons.css";
 @import "pages.css";
 @import "responsive.css";
+
+.concert-box {
+    width:24%;
+    display:inline-block;
+    margin-right:1%;
+    position:relative;
+}
+
+.gal-detail {
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.venue-label {
+    position:absolute;
+    bottom:48px;
+    right:23px;
+}
+
+.live-display {
+    position:absolute;
+    bottom:18px;
+    right:25px;
+    color:#fff;
+}
+
+.live-display.static {
+    position:static;
+}
+.live-display.static .live-marker {
+    position:relative;
+    left:13px;
+    top:4px;
+    margin-right:0px;
+}
+
+.live-marker {
+    float:left;
+    margin-right:7px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    width:10px;
+    height:10px;
+    position:relative;
+    top:5px;
+}
+
+.price-features b {
+    color:#fff;
+    margin-right:10px;
+
+}

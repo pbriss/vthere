@@ -1313,8 +1313,12 @@ button.confirm {
   background-color: #5d9cec !important;
   color: #ffffff;
 }
+.grid-item {
+  width:300px;
+  height:300px;
+}
 .thumb {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 3px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
   margin-top: 30px;
@@ -1496,7 +1500,7 @@ button.confirm {
 }
 .price-features li {
   margin: 0 35px;
-  padding: 20px 15px;
+  padding: 7px 15px;
 }
 .pricing-item {
   margin: 0 0 30px;
@@ -1550,6 +1554,7 @@ button.confirm {
   padding: 12px 20px;
 }
 .pricing-num {
+  color:#fff;
   font-size: 40px;
   font-weight: 700;
   line-height: 1;
@@ -1574,7 +1579,7 @@ button.confirm {
 ============= */
 .bg-picture {
   margin: -20px -25px 0px -25px;
-  padding: 100px 0px;
+  padding: 20px 0px;
   position: relative;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);

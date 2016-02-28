@@ -40,12 +40,12 @@
         	{ y: '2009', a: 40,  b: 30 },
             { y: '2010', a: 55,  b: 45 },
             { y: '2011', a: 60,  b: 50 },
-            { y: '2012', a: 75,  b: 65 },
-            { y: '2013', a: 80,  b: 70 },
-            { y: '2014', a: 95,  b: 85 },
-            { y: '2015', a: 100, b: 90 }
+            { y: '2012', a: 75,  b: 75 },
+            { y: '2013', a: 80,  b: 100 },
+            { y: '2014', a: 95,  b: 125 },
+            { y: '2015', a: 100, b: 150 }
           ];
-        this.createLineChart('morris-line-chart', $data, 'y', ['a', 'b'], ['Deal-Won ', 'Deal-Lost '],['0.1'],['#ffffff'],['#999999'], ['#81c868', '#ffbd4a']);
+        this.createLineChart('morris-line-chart', $data, 'y', ['a', 'b'], ['Users - Registered ', 'Users - Watching'],['0.1'],['#ffffff'],['#999999'], ['#81c868', '#ffbd4a']);
 
 
     },

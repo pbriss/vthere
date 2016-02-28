@@ -3,14 +3,15 @@
 
 	angular.module('app.filters', [])
 
-	.filter('iif', iif);
+	.filter('capitalize', capitalize);
 
 	//
 	// Ternary operator filter
 	//
-	function iif() {
-		return function(input, trueValue, falseValue) {
-			return input ? trueValue : falseValue;
-		};
+	function capitalize() {
+		return function(input, all) {
+			var reg = (all) ? /([^\W_]+[^\s-]*) */g : /([^\W_]+[^\s-]*)/;
+			return (!!input) ? input.replace(reg, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
+		}
 	}
 }());
