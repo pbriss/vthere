@@ -30,14 +30,14 @@ var timing = {showTiming: false, // Switch to true to show frame times in the co
 var called = {};
 var videoOptions = {};
 
-function resizeContainer() {
+/*function resizeContainer() {
   if (!window.container) {
     window.container = document.getElementById('video-container');
   }
 
   window.container.style.width = window.innerWidth + 'px';
   window.container.style.height = window.innerHeight + 'px';
-}
+}*/
 
 //window.addEventListener('resize', resizeContainer);
 

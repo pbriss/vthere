@@ -82,11 +82,11 @@
         var ratio = devicePixelRatio / backingStoreRatio;
 
         if (canvas.width != screenWidth * ratio || canvas.height != screenHeight * ratio) {
-            canvas.width = screenWidth * ratio;
-            canvas.height = screenHeight * ratio;
+            //canvas.width = screenWidth * ratio;
+            //canvas.height = screenHeight * ratio;
 
-            canvas.style.width = screenWidth + 'px';
-            canvas.style.height = screenHeight + 'px';
+            canvas.style.width = 100 + '%';
+            canvas.style.height = 100 + '%';
         }
       }
     },
