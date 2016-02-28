@@ -1,2 +1,4 @@
 .DS_STORE
+web-app/dist
+web-app/app/scripts
 .idea
