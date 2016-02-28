@@ -9,6 +9,7 @@
 
 		$stateProvider
 		.state('vrplay', {
+			parent:'layout',
 			url: '/vrplay/:id',
 			controller: 'VrplayController',
 			templateUrl: 'modules/vrplay/vrplay.html'
