@@ -67,7 +67,7 @@ function setupControls() {
 
   controls.create();
 
-  called.setupControls = true;
+  //called.setupControls = true;
 }
 
 function runEleVRPlayer() {
@@ -107,7 +107,7 @@ function runEleVRPlayer() {
 
   initFromSettings(window.location.hash || window.location.search);
 
-  called.runEleVRPlayer = true;
+  //called.runEleVRPlayer = true;
 }
 
 function initFromSettings(newSettings) {

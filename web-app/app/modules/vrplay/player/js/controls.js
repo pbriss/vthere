@@ -160,7 +160,7 @@ var manualRotation = quat.create(),
     },
 
     unmute: function() {
-      if (!video.muted) {
+      if (video && !video.muted) {
         return;
       }
       video.muted = false;
@@ -218,11 +218,13 @@ var manualRotation = quat.create(),
     },
 
     hide: function() {
-      window.videoControls.classList.add('hidden');
+      if(window.videoControls)
+        window.videoControls.classList.add('hidden');
     },
 
     show: function() {
-      window.videoControls.classList.remove('hidden');
+      if(window.videoControls)
+        window.videoControls.classList.remove('hidden');
     }
   };
 
