@@ -65,6 +65,7 @@
       screenHeight = window.innerHeight;
 
       if (typeof vrHMD !== 'undefined' && typeof util.isFullscreen() !== 'undefined' && util.isFullscreen()) {
+        console.log(vrHMD, vrHMD.getEyeParameters('right'));
         var rectHalf = vrHMD.getEyeParameters('right').renderRect;
         canvas.width = rectHalf.width * 2;
         canvas.height = rectHalf.height;
