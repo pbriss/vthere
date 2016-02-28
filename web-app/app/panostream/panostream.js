@@ -80,7 +80,7 @@ function displayVideoSize_(video_tag) {
 function getDevices() {
   // Fill the video dropdown with the available devices.
   var video_select = document.querySelector('#videosrc');
-  MediaStreamTrack.getSources(function(devices) {
+    navigator.mediaDevices.enumerateDevices().then(function(devices) {
     for (var i = 0; i < devices.length; i++) {
       var option = document.createElement('option');
       option.value = devices[i].id;
