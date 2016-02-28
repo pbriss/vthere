@@ -22,6 +22,8 @@
 
         $scope.video = $scope.videos[$stateParams.id];
 
+        $scope.currentConcert = $rootScope.concerts[$stateParams.id];
+
         runEleVRPlayer();
     }
 
