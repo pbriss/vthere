@@ -46,47 +46,16 @@ function Player (canvas, sampleRate) {
             return;
         }
 
-        var iii = 0;
-        var timestamps = media.nalBlocks.map(function(v) {
-          return v.timeStamp;
-        });
-        this._avc.onPictureDecoded = function(buffer, wid, hei) {
-            var yuv = new Uint8Array(buffer.length);
-            yuv.set(buffer, 0, buffer.length);
-            var picture = {'yuv':yuv, 'wid':wid, 'hei':hei};
-            picture.timeStamp = timestamps[iii++];
-            // console.log(">>>>> " +  picture.timeStamp);
-            if ( i === 0) {
-                picture.flag = true;
-            } else {
-                picture.flag = false;
-            }
-
-            this._videoBufferList.push(picture);
-        }.bind(this);
-
-        /*
-        var doDecode = function(first) {
-            if ( media.nalBlocks.length > 0) {
-                picture = null;
-                this._avc.decode(media.nalBlocks[0].payload);
-                if( picture != null) {
-                    picture.timeStamp = media.nalBlocks[0].timeStamp;
-                    picture.flag = first;
-                    this._videoBufferList.push(picture);
-                }
-                media.nalBlocks.shift();
-                setTimeout(doDecode(false), 2);
-            } else {
-                delete media;
-
-            }
-        }.bind(this);
-        doDecode(true);
-        */
-        console.log("block number:", media.nalBlocks.length);
-        for (i = 0; i < media.nalBlocks.length; i++) {
-          this._avc.decode(media.nalBlocks[i].payload);
+        if(media.nalBlocks.length > 0) console.log("block number:", media.nalBlocks.length);
+        for (var i = 0; i < media.nalBlocks.length; i++) {
+          this._avc.decode(media.nalBlocks[i].payload, function(firstFrame, timeStamp, buffer, wid, hei) {
+              var yuv = new Uint8Array(buffer.length);
+              yuv.set(buffer, 0, buffer.length);
+              var picture = {'yuv':yuv, 'wid':wid, 'hei':hei, timeStamp: timeStamp};
+              // console.log(">>>>> " +  picture.timeStamp);
+              picture.flag = firstFrame;
+              this._videoBufferList.push(picture);
+          }.bind(this, i === 0, media.nalBlocks[i].timeStamp));
         }
 
         delete media;

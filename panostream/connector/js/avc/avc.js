@@ -10,78 +10,50 @@ HEAP16 = Module.HEAP16;
 HEAP32 = Module.HEAP32;
 _h264bsdClip = Module._get_h264bsdClip();
 
-var _broadwayOnHeadersDecoded;
-var _broadwayOnPictureDecoded;
+/**
+ * Creates a typed array from a HEAP8 pointer.
+ */
+function toU8Array(ptr, length) {
+  return HEAPU8.subarray(ptr, ptr + length);
+}
 
-var Avc = (function avc() {
-  const MAX_STREAM_BUFFER_LENGTH = 1024 * 1024;
+var _broadwayOnHeadersDecoded = function () {
 
-  function constructor() {
-    Module._broadwayInit();
-    this.streamBuffer = toU8Array(Module._broadwayCreateStream(MAX_STREAM_BUFFER_LENGTH), MAX_STREAM_BUFFER_LENGTH);
-    this.pictureBuffers = {};
+};
 
-    this.onPictureDecoded = function (buffer, width, height) {
-      // console.info(buffer.length);
-    }
-
-    _broadwayOnHeadersDecoded = function () {
-
-    };
-    if (_broadwayOnPictureDecoded != null) {
-      console.log("not gonna replace bitch");
-      var saved_broadwayOnPictureDecoded = _broadwayOnPictureDecoded;
-      _broadwayOnPictureDecoded = function ($buffer, width, height) {
-        console.log("calling old");
-        saved_broadwayOnPictureDecoded(buffer, width, height);
-
-        _broadwayOnPictureDecoded = function($buffer, width, height) {
-          console.log("Calling new");
-          var buffer = this.pictureBuffers[$buffer];
-          if (!buffer) {
-            buffer = this.pictureBuffers[$buffer] = toU8Array($buffer, (width * height * 3) / 2);
-          }
-          this.onPictureDecoded(buffer, width, height);
-        }.bind(this);
-      }.bind(this);
-    } else {
-      _broadwayOnPictureDecoded = function ($buffer, width, height) {
-        var buffer = this.pictureBuffers[$buffer];
-        if (!buffer) {
-          buffer = this.pictureBuffers[$buffer] = toU8Array($buffer, (width * height * 3) / 2);
-        }
-        this.onPictureDecoded(buffer, width, height);
-      }.bind(this);
-    }
+var arrOfShit = [];
+var _broadwayOnPictureDecoded = function($buffer, width, height) {
+  if (arrOfShit.length === 0) {
+   return console.log("...? wat");
   }
+  var cb = arrOfShit.shift();
+
+  var buffer = toU8Array($buffer, (width * height * 3) / 2);
+  cb(buffer, width, height);
+};
+var MAX_STREAM_BUFFER_LENGTH = 1024 * 1024;
+
+function Avc() {
+  Module._broadwayInit();
+  this.streamBuffer = toU8Array(Module._broadwayCreateStream(MAX_STREAM_BUFFER_LENGTH), MAX_STREAM_BUFFER_LENGTH);
 
   /**
-   * Creates a typed array from a HEAP8 pointer.
+   * Decodes a stream buffer. This may be one single (unframed) NAL unit without the
+   * start code, or a sequence of NAL units with framing start code prefixes. This
+   * function overwrites stream buffer allocated by the codec with the supplied buffer.
    */
-  function toU8Array(ptr, length) {
-    return HEAPU8.subarray(ptr, ptr + length);
-  }
-
-  constructor.prototype = {
-    /**
-     * Decodes a stream buffer. This may be one single (unframed) NAL unit without the
-     * start code, or a sequence of NAL units with framing start code prefixes. This
-     * function overwrites stream buffer allocated by the codec with the supplied buffer.
-     */
-    decode: function decode(buffer) {
-      // console.info("Decoding: " + buffer.length);
-      this.streamBuffer.set(buffer);
-      Module._broadwaySetStreamLength(buffer.length);
-      Module._broadwayPlayStream();
-    },
-    configure: function (config) {
-      // patchOptimizations(config, patches);
-      console.info("Broadway Configured: " + JSON.stringify(config));
-    }
+  this.decode = function decode(buffer, callback) {
+    arrOfShit.push(callback);
+    // console.info("Decoding: " + buffer.length);
+    this.streamBuffer.set(buffer);
+    Module._broadwaySetStreamLength(buffer.length);
+    Module._broadwayPlayStream();
+  }.bind(this);
+  this.configure = function (config) {
+    // patchOptimizations(config, patches);
+    console.info("Broadway Configured: " + JSON.stringify(config));
   };
-
-  return constructor;
-})();
+}
 
 function patchOptimizations(config, patches) {
   var scope = getGlobalScope();

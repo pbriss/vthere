@@ -63,7 +63,7 @@ $(document).ready(function() {
             //   });
             // } else {
             connect("localhost", 9000, element);
-            // connect("localhost", 9003, element);
+            // connect("localhost", 9003, element2);
               // connect("192.168.1.112", element);
               // connect("192.168.1.147", element2);
             // }
