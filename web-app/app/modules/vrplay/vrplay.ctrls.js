@@ -5,8 +5,8 @@
 
     .controller('VrplayController', VrplayController);
 
-    VrplayController.$inject = ['$stateParams', '$scope', '$timeout'];
-    function VrplayController($stateParams, $scope, $timeout) {
+    VrplayController.$inject = ['$stateParams', '$scope', '$rootScope'];
+    function VrplayController($stateParams, $scope, $rootScope) {
 
         $scope.videos = {
             1: "modules/vrplay/videos/ArturSychowski_classical_intimate.mp4",
@@ -21,6 +21,8 @@
         };
 
         $scope.video = $scope.videos[$stateParams.id];
+
+        $scope.currentConcert = $rootScope.concerts[$stateParams.id];
 
         runEleVRPlayer();
     }

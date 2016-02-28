@@ -66,28 +66,42 @@
       }
 </script>
 
-<div id="video-container">
-    <!-- Loading Message -->
-    <div id="left-load" class="left">
-        <div id="title-l" class="title">Loading Video...</div>
-    </div>
-    <div id="left-play" class="left hidden">
-        <a id="play-l" class="large-play fa fa-play fa-5x"></a>
-    </div>
+<div class="content-page">
+    <!-- Start content -->
+    <div class="content">
+        <div class="container">
 
-    <canvas id="glcanvas">
-        Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
-    </canvas>
-    <video class="hidden" preload="auto" id="video" loop="true" webkit-playsinline crossOrigin="anonymous">
-        <source ng-src="{{video}}" type="video/mp4">
-    </video>
-    <!-- Video Controls -->
-    <div id="video-controls" class="hidden">
-        <a id="play-pause" class="fa fa-play icon" title="Play"></a>
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="page-title m-b-20"><i class="fa fa-video-camera text-danger m-r-10"></i>{{currentConcert.name}}</h4>
+                </div>
+            </div>
+            <div id="video-container">
+                <!-- Loading Message -->
+                <div id="left-load" class="left-player">
+                    <div id="title-l" class="title">Loading Video...</div>
+                </div>
+                <div id="left-play" class="left-player hidden">
+                    <a id="play-l" class="large-play fa fa-play fa-5x"></a>
+                </div>
 
-        <a id="mute" class="fa fa-volume-up icon" title="Mute"></a>
+                <canvas id="glcanvas">
+                    Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
+                </canvas>
+                <video class="hidden" preload="auto" id="video" loop="true" webkit-playsinline crossOrigin="anonymous">
+                    <source ng-src="{{video}}" type="video/mp4">
+                </video>
+                <!-- Video Controls -->
+                <div id="video-controls" class="hidden">
+                    <a id="play-pause" class="fa fa-play icon" title="Play"></a>
 
-        <a class="rfloat" title="Full Screen">Live</a>
+                    <a id="mute" class="fa fa-volume-up icon" title="Mute"></a>
+
+                    <a class="rfloat" title="Full Screen">Live</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -7,7 +7,7 @@
             <!-- Page-Title -->
             <div class="row">
                 <div class="col-sm-12">
-                    <h4 class="page-title m-b-10"><i class="ion-flame text-danger m-r-10"></i>Trending Concerts</h4>
+                    <h4 class="page-title m-b-10"><i class="ion-flame text-danger m-r-10"></i>Trending Events</h4>
                 </div>
             </div>
 
@@ -87,7 +87,7 @@
                             </ul>
 
                             <div class="live-display static" ng-if="currentConcert.isLive">
-                                <button class="btn btn-purple w-md waves-effect waves-light"><i class="fa fa-play m-r-5"></i>Watch Now</button>
+                                <a ui-sref="vrplay({id: '{{currentConcert.id}}'})" class="btn btn-purple w-md waves-effect waves-light"><i class="fa fa-play m-r-5"></i>Watch Now</a>
                             </div>
                             <div class="live-display static" ng-if="!currentConcert.isLive">
                                 <button class="btn btn-purple w-md waves-effect waves-light"><i class="fa fa-calendar m-r-5"></i>Add to Calendar</button>

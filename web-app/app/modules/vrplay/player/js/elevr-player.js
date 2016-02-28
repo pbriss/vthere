@@ -39,7 +39,7 @@ function resizeContainer() {
   window.container.style.height = window.innerHeight + 'px';
 }
 
-window.addEventListener('resize', resizeContainer);
+//window.addEventListener('resize', resizeContainer);
 
 function setupControls() {
   if (called.setupControls) {
@@ -49,7 +49,7 @@ function setupControls() {
   window.videoControls = document.getElementById('video-controls');
   window.messageL = document.getElementById('message-l');
 
-  resizeContainer();
+  //resizeContainer();
 
   window.leftLoad = document.getElementById('left-load');
   window.leftPlay = document.getElementById('left-play');
