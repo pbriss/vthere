@@ -1,5 +1,5 @@
-/Users/sansouci/Desktop/MyApplication/app/src/main/obj/local/armeabi/objs/MediaEncoder/main_jni.o: \
- /Users/sansouci/Desktop/MyApplication/app/src/main/jni/main_jni.cpp \
+/Users/sansouci/Desktop/MyApplication/android-app/app/src/main/obj/local/armeabi/objs/MediaEncoder/main_jni.o: \
+ /Users/sansouci/Desktop/MyApplication/android-app/app/src/main/jni/main_jni.cpp \
  /usr/local/opt/android-ndk-r10e/platforms/android-9/arch-arm/usr/include/jni.h \
  /usr/local/opt/android-ndk-r10e/platforms/android-9/arch-arm/usr/include/sys/cdefs.h \
  /usr/local/opt/android-ndk-r10e/platforms/android-9/arch-arm/usr/include/sys/cdefs_elf.h \
@@ -18,17 +18,17 @@
  /usr/local/opt/android-ndk-r10e/sources/cxx-stl/stlport/stlport/stl/config/_native_headers.h \
  /usr/local/opt/android-ndk-r10e/sources/cxx-stl/stlport/stlport/stl/_epilog.h \
  /usr/local/opt/android-ndk-r10e/sources/cxx-stl/stlport/stlport/stl/_config_compat_post.h \
- /Users/sansouci/Desktop/MyApplication/app/src/main/jni/helper.h \
+ /Users/sansouci/Desktop/MyApplication/android-app/app/src/main/jni/helper.h \
  /usr/local/opt/android-ndk-r10e/platforms/android-9/arch-arm/usr/include/android/log.h \
- /Users/sansouci/Desktop/MyApplication/app/src/main/jni/h264encoder.h \
+ /Users/sansouci/Desktop/MyApplication/android-app/app/src/main/jni/h264encoder.h \
  /usr/local/opt/android-ndk-r10e/platforms/android-9/arch-arm/usr/include/stdint.h \
  /usr/local/opt/android-ndk-r10e/sources/cxx-stl/stlport/stlport/stddef.h \
  /usr/local/opt/android-ndk-r10e/platforms/android-9/arch-arm/usr/include/sys/_types.h \
  /usr/local/opt/android-ndk-r10e/platforms/android-9/arch-arm/usr/include/machine/_types.h \
  /usr/local/opt/android-ndk-r10e/platforms/android-9/arch-arm/usr/include/inttypes.h \
- /Users/sansouci/Desktop/MyApplication/app/src/main/jni/x264/x264.h \
- /Users/sansouci/Desktop/MyApplication/app/src/main/jni/x264/x264_config.h \
- /Users/sansouci/Desktop/MyApplication/app/src/main/jni/g72x/g72x.h
+ /Users/sansouci/Desktop/MyApplication/android-app/app/src/main/jni/x264/x264.h \
+ /Users/sansouci/Desktop/MyApplication/android-app/app/src/main/jni/x264/x264_config.h \
+ /Users/sansouci/Desktop/MyApplication/android-app/app/src/main/jni/g72x/g72x.h
 
 /usr/local/opt/android-ndk-r10e/platforms/android-9/arch-arm/usr/include/jni.h:
 
@@ -66,11 +66,11 @@
 
 /usr/local/opt/android-ndk-r10e/sources/cxx-stl/stlport/stlport/stl/_config_compat_post.h:
 
-/Users/sansouci/Desktop/MyApplication/app/src/main/jni/helper.h:
+/Users/sansouci/Desktop/MyApplication/android-app/app/src/main/jni/helper.h:
 
 /usr/local/opt/android-ndk-r10e/platforms/android-9/arch-arm/usr/include/android/log.h:
 
-/Users/sansouci/Desktop/MyApplication/app/src/main/jni/h264encoder.h:
+/Users/sansouci/Desktop/MyApplication/android-app/app/src/main/jni/h264encoder.h:
 
 /usr/local/opt/android-ndk-r10e/platforms/android-9/arch-arm/usr/include/stdint.h:
 
@@ -82,8 +82,8 @@
 
 /usr/local/opt/android-ndk-r10e/platforms/android-9/arch-arm/usr/include/inttypes.h:
 
-/Users/sansouci/Desktop/MyApplication/app/src/main/jni/x264/x264.h:
+/Users/sansouci/Desktop/MyApplication/android-app/app/src/main/jni/x264/x264.h:
 
-/Users/sansouci/Desktop/MyApplication/app/src/main/jni/x264/x264_config.h:
+/Users/sansouci/Desktop/MyApplication/android-app/app/src/main/jni/x264/x264_config.h:
 
-/Users/sansouci/Desktop/MyApplication/app/src/main/jni/g72x/g72x.h:
+/Users/sansouci/Desktop/MyApplication/android-app/app/src/main/jni/g72x/g72x.h:

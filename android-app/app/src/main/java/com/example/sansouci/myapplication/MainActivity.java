@@ -52,8 +52,8 @@ public class MainActivity extends Activity
     public static String TAG="MYAPPLICATION";
     private final int ServerPort = 8080;
     private final int StreamingPort = 8088;
-    private final int PictureWidth = 640;
-    private final int PictureHeight = 480;
+    private final int PictureWidth = 1920;
+    private final int PictureHeight = 1080;
     private final int MediaBlockNumber = 3;
     private final int MediaBlockSize = 1024*512;
     private final int EstimatedFrameNumber = 30;
@@ -63,7 +63,7 @@ public class MainActivity extends Activity
     private TeaServer webServer = null;
     private OverlayView overlayView = null;
     private CameraView cameraView = null;
-    private AudioRecord audioCapture = null;
+//    private AudioRecord audioCapture = null;
 
     ExecutorService executor = Executors.newFixedThreadPool(3);
     VideoEncodingTask videoTask = new  VideoEncodingTask();
@@ -143,8 +143,8 @@ public class MainActivity extends Activity
 
         if ( webServer != null)
             webServer.stop();
-        if ( audioCapture != null)
-            audioCapture.release();
+//        if ( audioCapture != null)
+//            audioCapture.release();
 
         if ( cameraView != null) {
             previewLock.lock();
@@ -172,11 +172,11 @@ public class MainActivity extends Activity
 
         nativeInitMediaEncoder(cameraView.Width(), cameraView.Height());
 
-        if ( audioCapture != null) {
-            audioCapture.startRecording();
-            AudioEncoder audioEncoder = new AudioEncoder();
-            audioEncoder.start();
-        }
+//        if ( audioCapture != null) {
+//            audioCapture.startRecording();
+//            AudioEncoder audioEncoder = new AudioEncoder();
+//            audioEncoder.start();
+//        }
 
         cameraView.StartPreview();
     }
@@ -225,17 +225,17 @@ public class MainActivity extends Activity
         if (targetSize < minBufferSize) {
             targetSize = minBufferSize;
         }
-        if (audioCapture == null) {
-            try {
-                audioCapture = new AudioRecord(MediaRecorder.AudioSource.MIC,
-                        8000,
-                        AudioFormat.CHANNEL_IN_MONO,
-                        AudioFormat.ENCODING_PCM_16BIT,
-                        targetSize);
-            } catch (IllegalArgumentException	 e) {
-                audioCapture = null;
-            }
-        }
+//        if (audioCapture == null) {
+//            try {
+//                audioCapture = new AudioRecord(MediaRecorder.AudioSource.MIC,
+//                        8000,
+//                        AudioFormat.CHANNEL_IN_MONO,
+//                        AudioFormat.ENCODING_PCM_16BIT,
+//                        targetSize);
+//            } catch (IllegalArgumentException	 e) {
+//                audioCapture = null;
+//            }
+//        }
     }
 
     private void resetMediaBuffer() {
@@ -250,15 +250,25 @@ public class MainActivity extends Activity
 
     private void doStreaming () {
         synchronized(MainActivity.this) {
+            // If the stream was opened in the past but later closed by the client, we just create a
+            // new one ready to get a new connection
+            if (!streamingServer.inStreaming && !streamingServer.justCreated) {
+                try {
+                    streamingServer = new StreamingServer(StreamingPort);
+                    streamingServer.start();
+                } catch (UnknownHostException e) {
+                    return;
+                }
+            } else {
+                MediaBlock targetBlock = mediaBlocks[mediaReadIndex];
+                if ( targetBlock.flag == 1) {
+                    streamingServer.sendMedia( targetBlock.data(), targetBlock.length());
+                    targetBlock.reset();
 
-            MediaBlock targetBlock = mediaBlocks[mediaReadIndex];
-            if ( targetBlock.flag == 1) {
-                streamingServer.sendMedia( targetBlock.data(), targetBlock.length());
-                targetBlock.reset();
-
-                mediaReadIndex ++;
-                if ( mediaReadIndex >= MediaBlockNumber) {
-                    mediaReadIndex = 0;
+                    mediaReadIndex ++;
+                    if ( mediaReadIndex >= MediaBlockNumber) {
+                        mediaReadIndex = 0;
+                    }
                 }
             }
         }
@@ -269,7 +279,6 @@ public class MainActivity extends Activity
                 doStreaming();
             }
         }, StreamingInterval);
-
     }
 
     protected String wifiIpAddress(Context context) {
@@ -409,61 +418,62 @@ public class MainActivity extends Activity
         }
     };
 
-    private class AudioEncoder extends Thread {
-        private byte[] audioPCM = new byte[1024*32];
-        private byte[] audioPacket = new byte[1024*1024];
-        private byte[] audioHeader = new byte[8];
-
-        int packageSize = 16000;
-
-        public AudioEncoder () {
-            audioHeader[0] = (byte)0x19;
-            audioHeader[1] = (byte)0x82;
-        }
-
-        @Override
-        public void run() {
-            while(true) {
-                int millis = (int)(System.currentTimeMillis() % 65535);
-
-                int ret = audioCapture.read(audioPCM, 0, packageSize);
-                if ( ret == AudioRecord.ERROR_INVALID_OPERATION ||
-                        ret == AudioRecord.ERROR_BAD_VALUE) {
-                    break;
-                }
-
-                ret = nativeDoAudioEncode(audioPCM, ret, audioPacket);
-                if(ret <= 0) {
-                    break;
-                }
-
-                // timestamp
-                audioHeader[2] = (byte)(millis & 0xFF);
-                audioHeader[3] = (byte)((millis>>8) & 0xFF);
-                // length
-                audioHeader[4] = (byte)(ret & 0xFF);
-                audioHeader[5] = (byte)((ret>>8) & 0xFF);
-                audioHeader[6] = (byte)((ret>>16) & 0xFF);
-                audioHeader[7] = (byte)((ret>>24) & 0xFF);
-
-                synchronized (MainActivity.this) {
-                    MediaBlock currentBlock = mediaBlocks[ mediaWriteIndex];
-                    if ( currentBlock.flag == 0) {
-                        currentBlock.write( audioHeader, 8);
-                        ret = currentBlock.write( audioPacket, ret);
-                        if ( ret == 0) {
-                            Log.d(TAG, ">>>>>>> lost audio in Java>>>");
-                        }
-                    }
-                }
-            }
-        }
-    }
+//    private class AudioEncoder extends Thread {
+//        private byte[] audioPCM = new byte[1024*32];
+//        private byte[] audioPacket = new byte[1024*1024];
+//        private byte[] audioHeader = new byte[8];
+//
+//        int packageSize = 16000;
+//
+//        public AudioEncoder () {
+//            audioHeader[0] = (byte)0x19;
+//            audioHeader[1] = (byte)0x82;
+//        }
+//
+//        @Override
+//        public void run() {
+//            while(true) {
+//                int millis = (int)(System.currentTimeMillis() % 65535);
+//
+//                int ret = audioCapture.read(audioPCM, 0, packageSize);
+//                if ( ret == AudioRecord.ERROR_INVALID_OPERATION ||
+//                        ret == AudioRecord.ERROR_BAD_VALUE) {
+//                    break;
+//                }
+//
+//                ret = nativeDoAudioEncode(audioPCM, ret, audioPacket);
+//                if(ret <= 0) {
+//                    break;
+//                }
+//
+//                // timestamp
+//                audioHeader[2] = (byte)(millis & 0xFF);
+//                audioHeader[3] = (byte)((millis>>8) & 0xFF);
+//                // length
+//                audioHeader[4] = (byte)(ret & 0xFF);
+//                audioHeader[5] = (byte)((ret>>8) & 0xFF);
+//                audioHeader[6] = (byte)((ret>>16) & 0xFF);
+//                audioHeader[7] = (byte)((ret>>24) & 0xFF);
+//
+//                synchronized (MainActivity.this) {
+//                    MediaBlock currentBlock = mediaBlocks[ mediaWriteIndex];
+//                    if ( currentBlock.flag == 0) {
+//                        currentBlock.write( audioHeader, 8);
+//                        ret = currentBlock.write( audioPacket, ret);
+//                        if ( ret == 0) {
+//                            Log.d(TAG, ">>>>>>> lost audio in Java>>>");
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 
 
     private class StreamingServer extends WebSocketServer {
         private WebSocket mediaSocket = null;
         public boolean inStreaming = false;
+        public boolean justCreated = true;
         ByteBuffer buf = ByteBuffer.allocate(MediaBlockSize);
 
         public StreamingServer( int port) throws UnknownHostException {
@@ -489,6 +499,7 @@ public class MainActivity extends Activity
 
         @Override
         public void onOpen( WebSocket conn, ClientHandshake handshake ) {
+            justCreated = false;
             if ( inStreaming == true) {
                 conn.close();
             } else {

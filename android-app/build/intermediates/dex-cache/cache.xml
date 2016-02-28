@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/sansouci/Desktop/MyApplication/android-app/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/Users/sansouci/Desktop/MyApplication/android-app/app/build/intermediates/pre-dexed/debug/classes-e85970c10298b3dfe5ddf753ba344d31c5dfc329.jar" />
+    </item>
+    <item
+        jar="/Users/sansouci/Desktop/MyApplication/android-app/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/Users/sansouci/Desktop/MyApplication/android-app/app/build/intermediates/pre-dexed/debug/classes-1c596b1213ffca39fa354f80becc0fb73ca82f44.jar" />
+    </item>
+    <item
+        jar="/Users/sansouci/Desktop/MyApplication/android-app/app/libs/java_websocket.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="b6d6965715da64b534b8ad33ed51263f65ee17c5">
+        <dex dex="/Users/sansouci/Desktop/MyApplication/android-app/app/build/intermediates/pre-dexed/debug/java_websocket-477a1958865caf3142348b5c5c9fff6211d31981.jar" />
+    </item>
+    <item
+        jar="/Users/sansouci/Desktop/MyApplication/android-app/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/sansouci/Desktop/MyApplication/android-app/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1-e46611d450bb2b1fadb0dd0e7030f4126fa08b9f.jar" />
+    </item>
+    <item
+        jar="/Users/sansouci/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/Users/sansouci/Desktop/MyApplication/android-app/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1-5af617ec27ad5282409fce93b0f5a48f6afbb829.jar" />
+    </item>
+
+</items>
