@@ -87,7 +87,14 @@
                             </ul>
 
                             <div class="live-display static m-t-15" ng-if="currentConcert.isLive">
-                                <a href="/#/vrplay/{{currentConcert.id}}" ng-click="closeCustomBox()" class="btn btn-purple w-md waves-effect waves-light"><i class="fa fa-play m-r-5"></i>Watch Now</a>
+                                    <div ng-if="currentConcert.id == 0">
+                                      <a href="panostream/index.html" ng-click="closeCustomBox()" class="btn btn-purple w-md waves-effect waves-light"><i class="fa fa-play m-r-5"></i>Watch Now</a>
+                                    </div>
+                                    <div ng-if="concert.id > 0">
+                                      <a href="/#/vrplay/{{currentConcert.id}}" ng-click="closeCustomBox()" class="btn btn-purple w-md waves-effect waves-light"><i class="fa fa-play m-r-5"></i>Watch Now</a>
+                                    </div>
+
+
                             </div>
                             <div class="live-display static" ng-if="!currentConcert.isLive">
                                 <button class="btn btn-purple w-md waves-effect waves-light"><i class="fa fa-calendar m-r-5"></i>Add to Calendar</button>
