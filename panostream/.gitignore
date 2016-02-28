@@ -1,0 +1,9 @@
+*.DS_Store
+.jsdtscope
+.project
+.settings
+panostream.sublime-workspace
+*.bc
+*.pexe
+
+
