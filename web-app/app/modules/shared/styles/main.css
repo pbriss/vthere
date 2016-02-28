@@ -5,6 +5,13 @@
 @import "pages.css";
 @import "responsive.css";
 
+.float-left {
+    float:left;
+}
+.float-right {
+    float:right;
+}
+
 .concert-box {
     width:24%;
     display:inline-block;
@@ -56,4 +63,34 @@
     color:#fff;
     margin-right:10px;
 
+}
+
+.watching-info .concert-info {
+    position:relative;
+    top:30px;
+    left:15px;
+}
+
+.watching-info h2.label {
+    padding-top:12px;
+    padding-bottom:15px;
+    position:absolute;
+    top:58px;
+    right:10px;
+    font-size:20px;
+}
+
+.img-circle.offline {
+    opacity: 0.5;
+}
+
+.online-marker {
+    position:absolute;
+    left:100px;
+    top:3px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    width:10px;
+    height:10px;
 }

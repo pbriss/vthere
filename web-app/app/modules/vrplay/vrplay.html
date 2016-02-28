@@ -73,36 +73,72 @@
 
             <!-- Page-Title -->
             <div class="row">
-                <div class="col-sm-12">
-                    <h4 class="page-title m-b-20"><i class="fa fa-video-camera text-danger m-r-10"></i>{{currentConcert.name}}</h4>
-
-                    <h5 class="text-muted">{{currentConcert.type}}</h5>
-                    <div class="venue-label label label-purple">{{currentConcert.venue | capitalize}}</div>
-                    <h5 class="text-muted"><i class="fa fa-map-marker m-r-5"></i>{{currentConcert.location}}</h5>
+                <div class="col-sm-9 watching-info">
+                    <h4 class="page-title m-b-10">
+                        <div class="profile-info-name float-left">
+                            <img ng-src="images/artists/{{currentConcert.id}}.png" class="thumb-lg img-circle img-thumbnail" alt="profile-image">
+                        </div>
+                        <div class="concert-info">{{currentConcert.name}}
+                            <span class="text-muted m-b-20"> - {{currentConcert.location}}</span>
+                        </div>
+                    </h4>
+                    <h2 class="label label-purple">{{numWatching}} people watching</h2>
                 </div>
             </div>
-            <div id="video-container">
-                <!-- Loading Message -->
-                <div id="left-load" class="left-player">
-                    <div id="title-l" class="title">Loading Video...</div>
+
+            <div class="row">
+                <div class="col-sm-9">
+                    <div id="video-container">
+                        <!-- Loading Message -->
+                        <div id="left-load" class="left-player">
+                            <div id="title-l" class="title">Loading Video...</div>
+                        </div>
+                        <div id="left-play" class="left-player hidden">
+                            <a id="play-l" class="large-play fa fa-play fa-5x"></a>
+                        </div>
+
+                        <canvas id="glcanvas">
+                            Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
+                        </canvas>
+                        <video class="hidden" preload="auto" id="video" loop="true" webkit-playsinline crossOrigin="anonymous">
+                            <source ng-src="{{video}}" type="video/mp4">
+                        </video>
+                        <!-- Video Controls -->
+                        <div id="video-controls" class="hidden">
+                            <a id="play-pause" class="fa fa-play icon" title="Play"></a>
+
+                            <a id="mute" class="fa fa-volume-up icon" title="Mute"></a>
+
+                            <a class="rfloat" title="Full Screen">Live</a>
+                        </div>
+                    </div>
                 </div>
-                <div id="left-play" class="left-player hidden">
-                    <a id="play-l" class="large-play fa fa-play fa-5x"></a>
-                </div>
+                <div class="col-sm-3">
+                    <div style="margin-top:-20px;">
+                        <h4 class="m-b-20 m-l-10 header-title"><b>Friends attending</b></h4>
+                        <div class="nicescroll p-l-r-10" style="max-height: 555px;">
+                            <div class="card-box" ng-repeat="friend in friends">
+                                <div class="contact-card">
+                                    <a class="pull-left" href="#">
+                                        <img class="img-circle" ng-class="friend.isOnline ? 'online' : 'offline'" src="assets/images/users/avatar-{{friend.id}}.jpg" alt="">
+                                    </a>
+                                    <div class="member-info">
+                                        <div ng-show="friend.isOnline" class="online-marker bg-success animated pulse"></div>
+                                        <h4 class="m-t-0 m-b-5 header-title" ng-class="friend.isOnline ? 'm-l-18' : ''"><b>{{friend.name}}</b></h4>
+                                        <ul class="social-links list-inline m-0 m-t-15">
+                                            <li>
+                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Message"><i class="icon-bubble"></i></a>
+                                            </li>
+                                            <li>
+                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Tweet"><i class="fa fa-twitter"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
 
-                <canvas id="glcanvas">
-                    Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
-                </canvas>
-                <video class="hidden" preload="auto" id="video" loop="true" webkit-playsinline crossOrigin="anonymous">
-                    <source ng-src="{{video}}" type="video/mp4">
-                </video>
-                <!-- Video Controls -->
-                <div id="video-controls" class="hidden">
-                    <a id="play-pause" class="fa fa-play icon" title="Play"></a>
-
-                    <a id="mute" class="fa fa-volume-up icon" title="Mute"></a>
-
-                    <a class="rfloat" title="Full Screen">Live</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

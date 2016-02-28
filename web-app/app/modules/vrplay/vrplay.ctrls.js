@@ -25,6 +25,15 @@
         $scope.currentConcert = $rootScope.concerts[$stateParams.id];
 
         runEleVRPlayer();
+
+        $scope.numWatching = Math.floor(Math.random() * 1000) + 100;
+
+        $scope.friends = [
+            {id: 2, name: 'Rick Samuel', isOnline: true},
+            {id: 3, name: 'Jessica Lauren', isOnline: false},
+            {id: 5, name: 'Benjamin San Souci', isOnline: false},
+            {id: 6, name: 'Marc Tangier', isOnline: true},
+        ];
     }
 
 }());
