@@ -71,8 +71,7 @@ function setupControls() {
   window.seekBar = document.getElementById('seek-bar');
 
   // Selectors
-  window.videoSelect = document.getElementById('video-select');
-  window.projectionSelect = document.getElementById('projection-select');
+  window.projectionSelect = 0;
 
   document.getElementById('title-l').style.fontSize = window.outerHeight / 20 + 'px';
   document.getElementById('title-r').style.fontSize = window.outerHeight / 20 + 'px';
@@ -110,7 +109,7 @@ function runEleVRPlayer() {
       fragmentShaderName: 'shader-fs',
       vertexShaderName: 'shader-vs',
       attributes: ['aVertexPosition'],
-      uniforms: ['uSampler', 'eye', 'projection', 'proj_inv'],
+      uniforms: ['uSampler', 'eye', 'projection', 'proj_inv']
     });
 
     webGL.initBuffers();
@@ -118,11 +117,6 @@ function runEleVRPlayer() {
 
     window.video.addEventListener('canplaythrough', controls.loaded);
     window.video.addEventListener('ended', controls.ended);
-
-    // Keep a record of all the videos that are in the drop-down menu.
-    Array.prototype.slice.call(window.videoSelect.options).forEach(function(option) {
-      videoOptions[option.value] = option;
-    });
   }
 
   initFromSettings(window.location.hash || window.location.search);

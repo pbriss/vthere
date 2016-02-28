@@ -35,10 +35,6 @@ var manualRotation = quat.create(),
         controls.playPause();
       });
 
-      loopButton.addEventListener('click', function() {
-        controls.toggleLooping();
-      });
-
       muteButton.addEventListener('click', function() {
         if (video.muted === false) {
           controls.mute();
@@ -51,12 +47,6 @@ var manualRotation = quat.create(),
         controls.fullscreen();
       });
 
-      seekBar.addEventListener('change', function() {
-        // Calculate the new time
-        var time = video.duration * (seekBar.value / 100);
-        video.currentTime = time;
-      });
-
       video.addEventListener('timeupdate', function() {
         // don't update if paused,
         // we get last time update after seekBar mousedown pauses
@@ -65,46 +55,6 @@ var manualRotation = quat.create(),
           var value = (100 / video.duration) * video.currentTime;
           seekBar.value = value;
         }
-      });
-
-      // Pause the video when the slider handle is being dragged
-      var tempPause = false;
-      seekBar.addEventListener('mousedown', function() {
-        if (!video.paused) {
-          video.pause();
-          tempPause = true;
-        }
-      });
-
-      seekBar.addEventListener('mouseup', function() {
-        if (tempPause) {
-          video.play();
-        }
-      });
-
-      videoSelect.addEventListener('change', function() {
-        projection = videoSelect.value[0];
-        projectionSelect.value = projection;
-
-        // Remove the hash/querystring if there were custom video parameters.
-        window.history.pushState('', document.title, window.location.pathname);
-
-        controls.loadVideo(videoSelect.value.substring(1));
-
-        var selectedOption = videoSelect.options[videoSelect.selectedIndex];
-        if ('autoplay' in selectedOption.dataset) {
-          controls.play();
-        }
-      });
-
-
-      projectionSelect.addEventListener('change', function() {
-        projection = projectionSelect.value;
-      });
-
-      document.getElementById('select-local-file').addEventListener('click', function(event) {
-        event.preventDefault();
-        controls.selectLocalVideo();
       });
     },
 
