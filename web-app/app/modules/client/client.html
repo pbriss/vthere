@@ -87,7 +87,7 @@
                             </ul>
 
                             <div class="live-display static m-t-15" ng-if="currentConcert.isLive">
-                                <a ui-sref="vrplay({id: '{{currentConcert.id}}'})" ng-click="closeCustomBox()" class="btn btn-purple w-md waves-effect waves-light"><i class="fa fa-play m-r-5"></i>Watch Now</a>
+                                <a href="/#/vrplay/{{currentConcert.id}}" ng-click="closeCustomBox()" class="btn btn-purple w-md waves-effect waves-light"><i class="fa fa-play m-r-5"></i>Watch Now</a>
                             </div>
                             <div class="live-display static" ng-if="!currentConcert.isLive">
                                 <button class="btn btn-purple w-md waves-effect waves-light"><i class="fa fa-calendar m-r-5"></i>Add to Calendar</button>

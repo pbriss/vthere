@@ -20,7 +20,7 @@
 			} else {
 				return '';
 			}
-		}
+		};
 
 		$rootScope.currentConcert = {};
 
