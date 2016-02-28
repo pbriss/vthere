@@ -36,7 +36,7 @@ function init()
   // Retrieve canvas and Field Of View constants.
   container = document.getElementById("glcanvascontainer");
   var SCREEN_WIDTH = 960;
-  var SCREEN_HEIGHT = 240;
+  var SCREEN_HEIGHT = 540;
   var VIEW_ANGLE = 45;
   var ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT;
   var NEAR = 0.1;

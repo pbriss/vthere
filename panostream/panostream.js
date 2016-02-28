@@ -1,7 +1,3 @@
-$ = function(id) {
-  return document.getElementById(id);
-};
-
 var gVideoCounter = 1;
 
 // Dict mapping video tag id to stream objects, i.e. "vid1" and so on.
@@ -20,8 +16,8 @@ function requestVideo(opt_video_id) {
       audio: false,
       video: {
           mandatory: {
-              maxWidth: 640,
-              maxHeight: 480,
+              maxWidth: 960,
+              maxHeight: 540,
           },
           optional: [
              {sourceId: videoId},
@@ -84,7 +80,6 @@ function displayVideoSize_(video_tag) {
 function getDevices() {
   // Fill the video dropdown with the available devices.
   var video_select = document.querySelector('#videosrc');
-  console.log(video_select);
   MediaStreamTrack.getSources(function(devices) {
     for (var i = 0; i < devices.length; i++) {
       var option = document.createElement('option');

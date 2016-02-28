@@ -58,7 +58,7 @@ function setupControls() {
   window.leftPlay = document.getElementById('left-play');
   window.rightPlay = document.getElementById('right-play');
   window.canvas = document.getElementById('glcanvas');
-  window.videoSomething = document.getElementById('video');
+  // window.videoSomething = document.getElementById('video');
 
   // Buttons
   window.playButton = document.getElementById('play-pause');
@@ -118,8 +118,8 @@ function runEleVRPlayer() {
     webGL.initBuffers();
     webGL.initTextures();
 
-    window.videoSomething.addEventListener('canplaythrough', controls.loaded);
-    window.videoSomething.addEventListener('ended', controls.ended);
+    // window.videoSomething.addEventListener('canplaythrough', controls.loaded);
+    // window.videoSomething.addEventListener('ended', controls.ended);
 
     // Keep a record of all the videos that are in the drop-down menu.
     Array.prototype.slice.call(window.videoSelect.options).forEach(function(option) {
@@ -184,7 +184,7 @@ function initFromSettings(newSettings) {
   controls.setLooping(settings.loop);
 
   if (settings.video) {
-    window.videoSomething.innerHTML = '';
+    // window.videoSomething.innerHTML = '';
 
     if (window.videoSelect) {
       var optionValue = settings.projection + settings.video;
@@ -218,7 +218,7 @@ function initFromSettings(newSettings) {
     controls.play();
   } else if (settings.autoplay === false) {
     // If user did not explicitly set `autoplay`, don't pause unnecessarily.
-    window.videoSomething.pause();
+    // window.videoSomething.pause();
   }
 }
 

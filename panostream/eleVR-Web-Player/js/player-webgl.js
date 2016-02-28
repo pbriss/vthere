@@ -69,7 +69,7 @@ var vrHMD, vrSensor;
         webGL.gl.texImage2D(webGL.gl.TEXTURE_2D, 0, webGL.gl.RGB, webGL.gl.RGB,
           webGL.gl.UNSIGNED_BYTE, magicVariableDoNotUsed);
         webGL.gl.bindTexture(webGL.gl.TEXTURE_2D, null);
-        timing.textureTime = videoSomething.currentTime;
+        // timing.textureTime = videoSomething.currentTime;
     },
 
     /**

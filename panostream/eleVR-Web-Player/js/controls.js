@@ -40,11 +40,11 @@ var manualRotation = quat.create(),
       });
 
       muteButton.addEventListener('click', function() {
-        if (videoSomething.muted === false) {
-          controls.mute();
-        } else {
-          controls.unmute();
-        }
+        // if (videoSomething.muted === false) {
+        //   controls.mute();
+        // } else {
+        //   controls.unmute();
+        // }
       });
 
       fullScreenButton.addEventListener('click', function() {
@@ -62,32 +62,32 @@ var manualRotation = quat.create(),
 
       seekBar.addEventListener('change', function() {
         // Calculate the new time
-        var time = videoSomething.duration * (seekBar.value / 100);
-        videoSomething.currentTime = time;
+        // var time = videoSomething.duration * (seekBar.value / 100);
+        // videoSomething.currentTime = time;
       });
 
-      videoSomething.addEventListener('timeupdate', function() {
-        // don't update if paused,
-        // we get last time update after seekBar mousedown pauses
-        if (!videoSomething.paused) {
-          // Calculate the slider value
-          var value = (100 / videoSomething.duration) * videoSomething.currentTime;
-          seekBar.value = value;
-        }
-      });
+      // videoSomething.addEventListener('timeupdate', function() {
+      //   // don't update if paused,
+      //   // we get last time update after seekBar mousedown pauses
+      //   if (!videoSomething.paused) {
+      //     // Calculate the slider value
+      //     var value = (100 / videoSomething.duration) * videoSomething.currentTime;
+      //     seekBar.value = value;
+      //   }
+      // });
 
       // Pause the videoSomething when the slider handle is being dragged
       var tempPause = false;
       seekBar.addEventListener('mousedown', function() {
-        if (!videoSomething.paused) {
-          videoSomething.pause();
-          tempPause = true;
-        }
+        // if (!videoSomething.paused) {
+        //   videoSomething.pause();
+        //   tempPause = true;
+        // }
       });
 
       seekBar.addEventListener('mouseup', function() {
         if (tempPause) {
-          videoSomething.play();
+          // videoSomething.play();
         }
       });
 
@@ -169,29 +169,29 @@ var manualRotation = quat.create(),
     loaded: function() {
       window.leftLoad.classList.add('hidden');
       window.rightLoad.classList.add('hidden');
-      if (videoSomething.paused) {
-        window.leftPlay.classList.remove('hidden');
-        window.rightPlay.classList.remove('hidden');
-      }
+      // if (videoSomething.paused) {
+      //   window.leftPlay.classList.remove('hidden');
+      //   window.rightPlay.classList.remove('hidden');
+      // }
     },
 
     play: function() {
-      if (videoSomething.ended) {
-        videoSomething.currentTime = 0.1;
-      }
+      // if (videoSomething.ended) {
+      //   videoSomething.currentTime = 0.1;
+      // }
 
-      videoSomething.play();
-      if (!videoSomething.paused) { // In case somehow hitting play button doesn't work.
-        window.leftPlay.classList.add('hidden');
-        window.rightPlay.classList.add('hidden');
-
-        window.playButton.className = 'fa fa-pause icon';
-        window.playButton.title = 'Pause';
-
+      // videoSomething.play();
+      // if (!videoSomething.paused) { // In case somehow hitting play button doesn't work.
+      //   window.leftPlay.classList.add('hidden');
+      //   window.rightPlay.classList.add('hidden');
+      //
+      //   window.playButton.className = 'fa fa-pause icon';
+      //   window.playButton.title = 'Pause';
+      //
         if (!reqAnimFrameID) {
           reqAnimFrameID = requestAnimationFrame(webGL.drawScene);
         }
-      }
+      // }
     },
 
     pause: function() {
@@ -205,30 +205,30 @@ var manualRotation = quat.create(),
     },
 
     playPause: function() {
-      if (videoSomething.paused === true) {
-        controls.play();
-      } else {
-        controls.pause();
-      }
+      // if (videoSomething.paused === true) {
+      //   controls.play();
+      // } else {
+      //   controls.pause();
+      // }
     },
 
     setLooping: function(loop) {
       loop = !!loop;
-      if (videoSomething.loop !== loop) {
-        controls.toggleLooping();
-      }
+      // if (videoSomething.loop !== loop) {
+      //   controls.toggleLooping();
+      // }
     },
 
     toggleLooping: function() {
-      if (videoSomething.loop === true) {
-        loopButton.className = 'fa fa-refresh icon';
-        loopButton.title = 'Start Looping';
-        videoSomething.loop = false;
-      } else {
-        loopButton.className = 'fa fa-chain-broken icon';
-        loopButton.title = 'Stop Looping';
-        videoSomething.loop = true;
-      }
+      // if (videoSomething.loop === true) {
+      //   loopButton.className = 'fa fa-refresh icon';
+      //   loopButton.title = 'Start Looping';
+      //   videoSomething.loop = false;
+      // } else {
+      //   loopButton.className = 'fa fa-chain-broken icon';
+      //   loopButton.title = 'Stop Looping';
+      //   videoSomething.loop = true;
+      // }
     },
 
     ended: function() {
@@ -240,19 +240,19 @@ var manualRotation = quat.create(),
     },
 
     mute: function() {
-      if (videoSomething.muted) {
-        return;
-      }
-      videoSomething.muted = true;
+      // if (videoSomething.muted) {
+      //   return;
+      // }
+      // videoSomething.muted = true;
       window.muteButton.className = 'fa fa-volume-off icon';
       window.muteButton.title = 'Unmute';
     },
 
     unmute: function() {
-      if (!videoSomething.muted) {
-        return;
-      }
-      videoSomething.muted = false;
+      // if (!videoSomething.muted) {
+      //   return;
+      // }
+      // videoSomething.muted = false;
       window.muteButton.className = 'fa fa-volume-up icon';
       window.muteButton.title = 'Mute';
     },
@@ -303,7 +303,7 @@ var manualRotation = quat.create(),
       var oldObjURL = videoObjectURL;
       videoObjectURL = null;
 
-      videoSomething.src = videoFile;
+      // videoSomething.src = videoFile;
 
       if (videoObjectURL && videoObjectURL !== videoFile) {
         URL.removeObjectURL(oldObjURL);

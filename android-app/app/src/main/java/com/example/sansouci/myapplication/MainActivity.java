@@ -70,7 +70,7 @@ public class MainActivity extends Activity
     private ReentrantLock previewLock = new ReentrantLock();
     boolean inProcessing = false;
 
-    byte[] yuvFrame = new byte[1920*1280*2];
+    byte[] yuvFrame = new byte[1920*1080*2];
 
     MediaBlock[] mediaBlocks = new MediaBlock[MediaBlockNumber];
     int mediaWriteIndex = 0;
@@ -351,7 +351,7 @@ public class MainActivity extends Activity
     };
 
     private class VideoEncodingTask implements Runnable {
-        private byte[] resultNal = new byte[1024*1024];
+        private byte[] resultNal = new byte[1920*1080];
         private byte[] videoHeader = new byte[8];
 
         public VideoEncodingTask() {
