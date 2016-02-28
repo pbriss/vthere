@@ -11,7 +11,7 @@
             restrict: 'A',
             link: function(scope, el, attrs) {
                 el.click(function(e) {
-                    $rootScope.currentConcert = scope.concerts[attrs.id];
+                    $rootScope.currentConcert = scope.concerts[parseInt(attrs.id)];
                     $rootScope.$apply();
 
                     Custombox.open({

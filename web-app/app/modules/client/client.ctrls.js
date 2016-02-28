@@ -5,10 +5,15 @@
 
     .controller('ClientController', ClientController);
 
-    ClientController.$inject = ['$rootScope', '$scope', '$timeout'];
-    function ClientController($rootScope, $scope, $timeout) {
+    ClientController.$inject = ['$scope', '$timeout'];
+    function ClientController($scope, $timeout) {
 
-        $rootScope.currentConcert = {};
+
+        $scope.closeCustomBox = function () {
+            $timeout(function () {
+                Custombox.close();
+            }, 1000);
+        };
 
 		//
         //$timeout(function() {

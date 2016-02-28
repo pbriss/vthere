@@ -22,6 +22,7 @@
 			}
 		}
 
+		$rootScope.currentConcert = {};
 
 		$rootScope.concerts = [
 			{
