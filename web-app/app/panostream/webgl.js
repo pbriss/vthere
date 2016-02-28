@@ -84,7 +84,7 @@ function init()
   var floor = new THREE.Mesh(floorGeometry, floorMaterial);
   floor.position.y = -240;
   floor.rotation.x = Math.PI / 2;
-  scene.add(floor);
+  //scene.add(floor);
 
   // Camera video input. The idea is to plug a camera <video> feed into a canvas
   // and use it to retrieve the data.
@@ -108,7 +108,7 @@ function init()
         new THREE.PlaneGeometry(videoImage[0].width, videoImage[0].height, 1, 1);
     movieScreen[i] = new THREE.Mesh(movieGeometry, movieMaterial);
 
-    movieScreen[i].position.set(0, 0, -4000);
+    movieScreen[i].position.set(0, 0, -3000);
     movieScreen[i].rotation.set(0, 0, 0); // (Math.PI /8)*(1-i)
     scene.add(movieScreen[i]);
   }
