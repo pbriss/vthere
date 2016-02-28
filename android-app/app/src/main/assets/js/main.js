@@ -24,45 +24,35 @@ var connect = function(myHost, port, element) {
     $("#spanInfo").html("Connected, waiting for media..");
 };
 
+
+
 // like main function in C
 $(document).ready(function() {
     $("#btnPlay").click( function() {
             $("#btnPlay").html("Stop")
             $("#spanInfo").html("Connecting...");
             var element = document.getElementById("canvas1");
-            // element.width = 640;
-            // element.height = 480;
-
             var element2 = document.getElementById("canvas2");
-            // element2.width = 640;
-            // element2.height = 480;
-            // if (window.location.hostname.length > 0) {
-            //   $.ajax({
-            //     url: "/cgi/query",
-            //     type: "get",
-            //     cache: false,
-            //     success: function(ret) {
-            //       console.log(ret);
-            //       var result = JSON.parse(ret);
-            //       if ( result.state === "ok") {
-            //         var element = document.getElementById("videoPlayer1");
-            //         element.width = result.width;
-            //         element.height = result.height;
-            //
-            //         connect(window.location.hostname, 8088, element);
-            //       } else {
-            //           alert("Mobile is busy!");
-            //           location.reload();
-            //       }
-            //     },
-            //     error: function() {
-            //         alert("Mobile is error");
-            //         location.reload();
-            //       },
-            //   });
-            // } else {
-            connect("localhost", 9000, element);
-            connect("localhost", 9001, element2);
+            var ctx = element.getContext('2d');
+            var ctx2 = element2.getContext('2d');
+
+            requestAnimationFrame(function loop() {
+              var img = new Image;
+              img.onload = function(){
+                ctx.drawImage(img,0,0);
+              };
+              img.src = "http://localhost:9000";
+
+              var img2 = new Image;
+              img2.onload = function(){
+                ctx2.drawImage(img2,0,0);
+              };
+              img2.src = "http://localhost:9001";
+
+              requestAnimationFrame(loop);
+            }.bind(null));
+            // connect("localhost", 9000, element);
+            // connect("localhost", 9001, element2);
               // connect("192.168.1.112", element);
               // connect("192.168.1.147", element2);
             // }

@@ -22,15 +22,13 @@ var _broadwayOnHeadersDecoded = function () {
 };
 
 var arrOfShit = [];
-var massiveCacheFuck = {};
 var _broadwayOnPictureDecoded = function($buffer, width, height) {
   if (arrOfShit.length === 0) {
    return console.log("...? wat");
   }
-  var obj = arrOfShit.shift();
+  var cb = arrOfShit.shift();
   var buffer = toU8Array($buffer, (width * height * 3) / 2);
-  massiveCacheFuck[obj.buffer] = buffer;
-  obj.cb(buffer);
+  cb(buffer, width, height);
 };
 var MAX_STREAM_BUFFER_LENGTH = 1024 * 1024;
 
@@ -44,10 +42,7 @@ function Avc() {
    * function overwrites stream buffer allocated by the codec with the supplied buffer.
    */
   this.decode = function decode(buffer, callback) {
-    if (massiveCacheFuck[buffer]) {
-      return callback(massiveCacheFuck[buffer]);
-    }
-    arrOfShit.push({cb: callback, buffer: buffer});
+    arrOfShit.push(callback);
     // console.info("Decoding: " + buffer.length);
     this.streamBuffer.set(buffer);
     Module._broadwaySetStreamLength(buffer.length);

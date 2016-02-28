@@ -48,13 +48,13 @@ function Player (canvas, sampleRate) {
 
         console.log("block number:", media.nalBlocks.length);
         for (var i = 0; i < media.nalBlocks.length; i++) {
-          this._avc.decode(media.nalBlocks[i].payload, function(firstFrame, timeStamp, buffer) {
+          this._avc.decode(media.nalBlocks[i].payload, function(firstFrame, timeStamp, buffer, wid, hei) {
               var yuv = new Uint8Array(buffer.length);
               yuv.set(buffer, 0, buffer.length);
               var picture = {
                 yuv:yuv,
-                // wid:wid,
-                // hei:hei,
+                wid:wid,
+                hei:hei,
                 timeStamp: timeStamp,
                 flag: firstFrame,
               };
@@ -75,7 +75,6 @@ function Player (canvas, sampleRate) {
 
     this._showPicture = function(picture) {
         yuv2ImageData(picture.yuv, this._rgba);
-        console.log(this._canvasContext.canvas);
         this._canvasContext.putImageData(this._rgba, 0, 0);
     }.bind(this);
 
