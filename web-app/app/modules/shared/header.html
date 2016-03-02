@@ -4,7 +4,9 @@
 	<!-- LOGO -->
 	<div class="topbar-left">
 		<div class="text-center">
-			<img src="images/logo.png" style="height:40px; margin-top:10px;" />
+			<a ui-sref="client">
+				<img src="images/logo.png" style="height:40px; margin-top:10px;" />
+			</a>
 		</div>
 	</div>
 
@@ -101,13 +103,7 @@
 						<a href="javascript:void(0);" class="right-bar-toggle waves-effect"><i class="icon-bubble"></i></a>
 					</li>
 					<li class="dropdown">
-						<a href="" class="dropdown-toggle profile waves-effect" data-toggle="dropdown" aria-expanded="true"><img src="../images/users/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
-						<ul class="dropdown-menu">
-							<li><a href="javascript:void(0);"><i class="ti-user m-r-5"></i> Profile</a></li>
-							<li><a href="javascript:void(0);"><i class="ti-settings m-r-5"></i> Settings</a></li>
-							<li><a href="javascript:void(0);"><i class="ti-lock m-r-5"></i> Lock screen</a></li>
-							<li><a href="javascript:void(0);"><i class="ti-power-off m-r-5"></i> Logout</a></li>
-						</ul>
+						<a ui-sref="agent" class="profile waves-effect"><img src="../images/users/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
 					</li>
 				</ul>
 			</div>

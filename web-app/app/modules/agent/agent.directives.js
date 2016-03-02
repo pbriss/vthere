@@ -21,7 +21,7 @@
                     $timeout(function() {
                         $('#dollar').removeClass('animated rubberBand');
                     }, 1000);
-                }, 3000);
+                }, 10000);
 
                 $timeout(function() {
                     scope.counters[0].update(scope.counters[0].endVal + 2);
@@ -33,7 +33,8 @@
                     $timeout(function() {
                         $('#dollar').removeClass('animated rubberBand');
                     }, 1000);
-                }, 2000);
+                }, 25000);
+
 
                 $timeout(function() {
                     scope.counters[0].update(scope.counters[0].endVal + 2);
@@ -45,7 +46,9 @@
                     $timeout(function() {
                         $('#dollar').removeClass('animated rubberBand');
                     }, 1000);
-                }, 2000);
+                }, 50000);
+
+
 
                 $timeout(function() {
                     scope.counters[0].update(scope.counters[0].endVal + 2);
@@ -57,7 +60,10 @@
                     $timeout(function() {
                         $('#dollar').removeClass('animated rubberBand');
                     }, 1000);
-                }, 2000);
+                }, 75000);
+
+
+
 
                 $timeout(function() {
                     scope.counters[0].update(scope.counters[0].endVal + 2);
@@ -69,7 +75,10 @@
                     $timeout(function() {
                         $('#dollar').removeClass('animated rubberBand');
                     }, 1000);
-                }, 2000);
+                }, 100000);
+
+
+
 
                 $timeout(function() {
                     scope.counters[0].update(scope.counters[0].endVal + 2);
@@ -81,12 +90,7 @@
                     $timeout(function() {
                         $('#dollar').removeClass('animated rubberBand');
                     }, 1000);
-                }, 2000);
-
-
-
-
-
+                }, 30000);
 
                 //
                 //el.click(function() {

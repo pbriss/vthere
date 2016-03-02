@@ -39,7 +39,7 @@
 				venue: 'intimate',
 				name: 'Artur Sychowski',
 				location: 'London, UK',
-				isLive: true,
+				isLive: false,
 			},
 			{
 				id: 2,
@@ -47,7 +47,7 @@
 				venue: 'intimate',
 				name: 'Bob Douwe',
 				location: 'Stockholm, Sweden',
-				isLive: false,
+				isLive: true,
 			},
 			{
 				id: 3,
@@ -71,7 +71,7 @@
 				venue: 'intimate',
 				name: 'Laysha',
 				location: 'Seoul, South Korea',
-				isLive: false,
+				isLive: true,
 			},
 			{
 				id: 6,
@@ -79,7 +79,7 @@
 				venue: 'outdoor',
 				name: 'Papa Roach',
 				location: 'Los Angeles, USA',
-				isLive: false,
+				isLive: true,
 			},
 			{
 				id: 7,
@@ -87,7 +87,7 @@
 				venue: 'intimate',
 				name: 'Dean Portier',
 				location: 'New York, USA',
-				isLive: true,
+				isLive: false,
 			},
 			{
 				id: 8,
@@ -103,7 +103,7 @@
 				venue: 'outdoor',
 				name: 'Volbeat',
 				location: 'London, UK',
-				isLive: false,
+				isLive: true,
 			},
 		];
 	}
