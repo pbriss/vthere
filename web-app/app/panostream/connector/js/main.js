@@ -31,24 +31,45 @@ $(document).ready(function() {
       var element2 = document.getElementById("canvas2");
       var ctx = element.getContext('2d');
       var ctx2 = element2.getContext('2d');
+      var isDisplayingTweet = false;
+      var wasDisplayingTweet = true; //required because canvas is cleared only
+        // on state changes, better perf
+      var tweetImg = new Image();
+      tweetImg.crossOrigin = "anonymous";
+      tweetImg.src = "/tweet.png";
 
       requestAnimationFrame(function loop(ctx, ctx2) {
-        var img = new Image;
+        if (isDisplayingTweet != wasDisplayingTweet) {
+          ctx2.clearRect(0, 0, element2.width, element2.height);
+          wasDisplayingTweet = isDisplayingTweet;
+        }
+
+        var img = new Image();
         img.crossOrigin = "anonymous";
         img.onload = function(){
           ctx.drawImage(img,0,0);
         };
         img.src = "http://localhost:9000/shot.jpg?rnd="+Date.now();
 
-        var img2 = new Image;
+        var img2 = new Image();
         img2.crossOrigin = "anonymous"; 
         img2.onload = function(){
           ctx2.drawImage(img2,0,0);
         };
         img2.src = "http://localhost:9001/shot.jpg?rnd="+Date.now();
 
+        if (isDisplayingTweet) {
+          ctx2.drawImage(tweetImg, 1278, 856);
+        }
+
         requestAnimationFrame(loop.bind(null, ctx, ctx2));
       }.bind(null, ctx, ctx2));
+
+      $(document).on("keypress", function(e){
+        if (e && e.which == 116 /* key = T */) {
+          isDisplayingTweet = !isDisplayingTweet;
+        }
+      }.bind(this));
 
       //runEleVRPlayer();
       //startVRNow();
