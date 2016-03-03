@@ -17,7 +17,14 @@
             6: "modules/vrplay/videos/PapaRoach_rock_outdoor.mp4",
             7: "modules/vrplay/videos/PortierDean_rock_intimate.mp4",
             8: "modules/vrplay/videos/VictorMilesen_rock_club.mp4",
-            9: "modules/vrplay/videos/Volbeat_rock_outdoor.mp4"
+            9: "modules/vrplay/videos/Volbeat_rock_outdoor.mp4",
+            10: "modules/vrplay/videos/AlunaGeorge_pop_outdoor.mp4",
+            11: "modules/vrplay/videos/Beethoven_classical_indoor.mp4",
+            12: "modules/vrplay/videos/KitoJempere_dance_club.mp4",
+            13: "modules/vrplay/videos/LynnKuoJasonNett_classical_intimate.mp4",
+            14: "modules/vrplay/videos/Kygo_pop_indoor.mp4",
+            15: "modules/vrplay/videos/SashaVovkJulieRens_dance_club.mp4",
+            16: "modules/vrplay/videos/Six60_rock_outdoor.mp4"
         };
 
         $scope.video = $scope.videos[$stateParams.id];
