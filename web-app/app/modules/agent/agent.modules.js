@@ -10,7 +10,7 @@
 
 		$stateProvider
 		.state('agent', {
-			parent:'layout',
+			parent:'layoutagent',
 			url: '/agent/home',
 			controller: 'AgentController',
 			templateUrl: 'modules/agent/agent.html'
