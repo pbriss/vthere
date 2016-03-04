@@ -1,4 +1,8 @@
 .DS_STORE
+npm-debug.log
 web-app/dist
 web-app/app/scripts
 .idea
+node_modules
+web-app/node_modules
+web-app/app/bower_components
