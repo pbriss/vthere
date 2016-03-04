@@ -37,11 +37,14 @@ $(document).ready(function() {
       var tweetImg = new Image();
       tweetImg.crossOrigin = "anonymous";
       tweetImg.src = "/tweet.png";
+      var isAnimating = false;
+      var currentX = 1918;
 
       requestAnimationFrame(function loop(ctx, ctx2) {
         if (isDisplayingTweet != wasDisplayingTweet) {
-          ctx2.clearRect(0, 0, element2.width, element2.height);
+          ctx2.clearRect(1278, 856, 642, 224);
           wasDisplayingTweet = isDisplayingTweet;
+          currentX = 1918;
         }
 
         var img = new Image();
@@ -59,7 +62,14 @@ $(document).ready(function() {
         img2.src = "http://localhost:9001/shot.jpg?rnd="+Date.now();
 
         if (isDisplayingTweet) {
-          ctx2.drawImage(tweetImg, 1278, 856);
+          if (currentX > 1278) {
+            isAnimating = true;
+            currentX -= 32;
+          } else {
+            currentX = 1278;
+            isAnimating = false;
+          }
+          ctx2.drawImage(tweetImg, currentX, 856);
         }
 
         $.get('/hasShaken', function(res) {
