@@ -40,9 +40,20 @@ app.get('/answers', function(req, res) {
   res.json(answers);
 });
 
-app.get('/clear', function(req, res){ 
+app.get('/clear', function(req, res){
   offers = [];
   answers = [];
+  res.send('Success');
+});
+
+var hasShaken = false;
+app.get('/hasShaken', function(req, res) {
+  res.send(hasShaken.toString());
+  hasShaken = false;
+});
+
+app.get('/shake', function(req, res) {
+  hasShaken = true;
   res.send('Success');
 });
 

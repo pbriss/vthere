@@ -52,7 +52,7 @@ $(document).ready(function() {
         img.src = "http://localhost:9000/shot.jpg?rnd="+Date.now();
 
         var img2 = new Image();
-        img2.crossOrigin = "anonymous"; 
+        img2.crossOrigin = "anonymous";
         img2.onload = function(){
           ctx2.drawImage(img2,0,0);
         };
@@ -61,6 +61,12 @@ $(document).ready(function() {
         if (isDisplayingTweet) {
           ctx2.drawImage(tweetImg, 1278, 856);
         }
+
+        $.get('/hasShaken', function(res) {
+          if (res == "true") {
+            isDisplayingTweet = !isDisplayingTweet;
+          }
+        });
 
         requestAnimationFrame(loop.bind(null, ctx, ctx2));
       }.bind(null, ctx, ctx2));
