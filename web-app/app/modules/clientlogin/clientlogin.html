@@ -1,7 +1,7 @@
 <div class="account-pages"></div>
 <div class="clearfix"></div>
 <div class="wrapper-page">
-	<img src="images/logo.png" style="margin-left:120px; margin-bottom:20px;" />
+	<img src="images/logo_dark_large.png" style="width:300px;margin-left:60px; margin-bottom:20px;" />
 	<div class=" card-box">
 
 		<div class="panel-body">
@@ -15,7 +15,7 @@
 						Enter your password to access trending events.
 					</p>
 					<div class="input-group m-t-30">
-						<input type="password" class="form-control" placeholder="Password" required="" value="password">
+						<input id="password" type="password" class="form-control" placeholder="Password" required="" value="password">
 								<span class="input-group-btn">
 									<a ui-sref="client" class="btn btn-purple w-sm waves-effect waves-light">
 										Log In
@@ -39,3 +39,18 @@
 	</div>
 
 </div>
+
+<script>
+	$(function() {
+		$(document).keydown(function(e) {
+			if(e.keyCode == 13){
+				window.location = '/#/client';
+			}
+		});
+		$('#password').keydown(function(e) {
+			if(e.keyCode == 13){
+				e.preventDefault();
+			}
+		});
+	});
+</script>

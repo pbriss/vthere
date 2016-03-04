@@ -42,7 +42,7 @@
 }
 .live-display.static .live-marker {
     position:relative;
-    left:13px;
+    left:42px;
     top:4px;
     margin-right:0px;
 }
@@ -59,10 +59,53 @@
     top:5px;
 }
 
+.custombox-perspective body {
+    background: url('../../../images/concert-crowd.jpg') no-repeat;
+    background-size: cover;
+}
+/*.custombox-modal-wrapper {*/
+/*}*/
+
+.custombox-modal-wrapper {
+    overflow-y:hidden;
+}
+
+/*.custombox-modal-wrapper::after {*/
+    /*content: "";*/
+    /*opacity: 0.8;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*bottom: 0;*/
+    /*right: 0;*/
+    /*position: absolute;*/
+    /*z-index: -1;*/
+/*}*/
+
+#concertbox-login {
+    margin-left:35px;
+    margin-top:20px;
+}
+
+#concertbox-login .price_card {
+    border-radius: 0;
+    padding-bottom:10px;
+    /*width:210px;*/
+}
+
+#concertbox-login .price_card .pricing-header {
+    border-radius: 0;
+}
+
+#concertbox-login .watch-container {
+    position:relative;
+    left:550px;
+    top:-240px;
+    height:0;
+}
+
 .price-features b {
     color:#fff;
     margin-right:10px;
-
 }
 
 .watching-info .concert-info {

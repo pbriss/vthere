@@ -1349,6 +1349,7 @@ body.fixed-left .side-menu.left {
   margin-bottom: 60px;
   margin-top: 60px;
   padding: 20px 5px 15px 5px;
+  background: #29323c;
 }
 .button-menu-mobile {
   background: transparent;

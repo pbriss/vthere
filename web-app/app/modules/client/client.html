@@ -74,33 +74,52 @@
                                 <sup>$</sup>5
                             </div>
                             <div ng-if="currentConcert.id == 0" class="pricing-num m-t-30 m-b-10">
-                                FREE! Thanks to
-                                <img src="images/ibm_logo.png" style="height:50px; margin-top:10px; display: block">
+                                <h2>FREE</h2>
                             </div>
                             <ul class="price-features">
                                 <li><b>Venue</b>{{currentConcert.venue | capitalize}}</li>
                                 <li><b>Genre</b>{{currentConcert.type}}</li>
-                                <li>
+                                <li style="padding:7px 0;">
                                     <div class="live-display static" ng-if="currentConcert.isLive">
                                         <div class="live-marker bg-danger animated infinite pulse"></div>LIVE
                                     </div>
-                                    <div class="live-display static" ng-if="!currentConcert.isLive">
-                                        22:00
+                                    <div class="" ng-if="!currentConcert.isLive">
+                                        Fri Mar 4, 2016 22:00
                                     </div>
                                 </li>
                             </ul>
 
-                            <div class="live-display static m-t-15" ng-if="currentConcert.isLive">
-                                    <div ng-if="currentConcert.id == 0">
-                                      <a href="panostream/index.html" ng-click="closeCustomBox()" class="btn btn-purple w-md waves-effect waves-light"><i class="fa fa-play m-r-5"></i>Watch Now</a>
-                                    </div>
-                                    <div ng-if="currentConcert.id > 0">
-                                      <a href="/#/vrplay/{{currentConcert.id}}" ng-click="closeCustomBox()" class="btn btn-purple w-md waves-effect waves-light"><i class="fa fa-play m-r-5"></i>Watch Now</a>
-                                    </div>
+                            <div class="container m-t-15" style="font-size:18px;padding-right:30px;padding-left:30px;">
+                                <div class="row text-white">
+                                    <div class="col-md-4"><span class="bg-purple" style="width:40px;display:block;">VIP</span></div>
+                                    <div class="col-md-4"><span class="bg-purple" style="width:40px;display:block;">AA</span></div>
+                                    <div class="col-md-4"><span class="bg-purple" style="width:40px;display:block;">01</span></div>
+                                </div>
                             </div>
-                            <div class="live-display static" ng-if="!currentConcert.isLive">
-                                <button class="btn btn-purple w-md waves-effect waves-light"><i class="fa fa-calendar m-r-5"></i>Add to Calendar</button>
+
+                            <div class="container m-b-20" style="font-size:16px;padding-right:30px;padding-left:30px;">
+                                <div class="row ">
+                                    <div class="col-md-4">Sec.</div>
+                                    <div class="col-md-4">Row</div>
+                                    <div class="col-md-4">Seat</div>
+                                </div>
                             </div>
+
+                            <div class="live-display static" ng-if="currentConcert.isLive">
+                                <div class="watch-container" style="top:-300px" ng-if="currentConcert.id == 0">
+                                    <div>
+                                        <h4>FREE! Thanks to</h4><img src="images/ibm_logo.png" style="height:70px;margin-bottom:10px;">
+                                    </div>
+                                    <a href="panostream/index.html" ng-click="closeCustomBox()" class="btn btn-purple btn-lg btn-block animated infinite smallpulse w-md waves-effect waves-light"><i class="fa fa-play m-r-5"></i>Watch Now</a>
+                                </div>
+                                <div class="watch-container" ng-if="currentConcert.id > 0">
+                                  <a href="/#/vrplay/{{currentConcert.id}}" ng-click="closeCustomBox()" class="btn btn-purple btn-lg btn-block animated infinite smallpulse w-md waves-effect waves-light"><i class="fa fa-play m-r-5"></i>Watch Now</a>
+                                </div>
+                            </div>
+                            <div class="watch-container live-display static" ng-if="!currentConcert.isLive">
+                                <button class="btn btn-purple btn-lg btn-block w-md waves-effect waves-light"><i class="fa fa-calendar m-r-5"></i>Add to Calendar</button>
+                            </div>
+                            <img src="images/barcode.png" style="width:180px;margin-top:10px;" />
                         </div> <!-- end Pricing_card -->
                     </div>
                 </div>

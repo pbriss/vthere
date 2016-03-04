@@ -142,7 +142,7 @@
 				type: 'Pop',
 				venue: 'indoor',
 				name: 'Kygo',
-				location: 'Seoul, SK',
+				location: 'San Francisco, USA',
 				isLive: true,
 			},
 			{

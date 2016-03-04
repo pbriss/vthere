@@ -16,7 +16,7 @@
 
                     Custombox.open({
                         target: '#concertbox-login',
-                        effect: 'makeway'
+                        effect: 'makeway',
                     });
                     e.preventDefault();
 
